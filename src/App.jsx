@@ -4,11 +4,9 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Public from './Pages/Public/Public';
 import { useParams } from 'react-router-dom';
 import NotFound from './Components/Dashboard/NotFound/NotFound';
-import { useSelector } from 'react-redux';
 import ProtectedRoutes from './ProtectedRoutes/ProtectedRoutes';
 
 function App() {
-  const isLoaderToggle = useSelector(state => state.loaderAction.loader);
   return (
     <>
       <BrowserRouter>
@@ -19,10 +17,6 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
-
-      {isLoaderToggle && (
-        <h2>Loading....</h2>
-      )}
     </>
   );
 }

@@ -107,15 +107,16 @@ const Login = () => {
                         value={formData.password}
                         onChange={handleChange}
                     />
-                    <img
+                    <img title={!showPassword ?"show password":"hide password"}
                         src={showPassword ? passEye : passEye}
                         alt={showPassword ? 'Hide Password' : 'Show Password'}
                         className={StylesLogin.passwordIcon}
                         onClick={handleTogglePassword}
                         style={{ position: 'relative', left: '-40px' }}
                     />
-                    {formSubmitted && <span className={StylesLogin.error}>{errors.password}</span>}
                 </div>
+                    {formSubmitted && <span className={StylesLogin.error}>{errors.password}</span>}
+                <br />
                 <br />
                 <button type="submit" className={StylesLogin.loginButton}>
                     Login

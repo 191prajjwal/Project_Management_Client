@@ -1,7 +1,6 @@
 .header {
     display: flex;
     width: 100%;
-
     position: sticky;
 }
 
@@ -12,36 +11,41 @@
     line-height: 33px;
     letter-spacing: 0em;
     text-align: left;
-
     position: relative;
     left: 257px;
+    margin-bottom: 15px;
+    
 }
 
 .headerDate {
     font-family: Poppins;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 500;
     line-height: 30px;
     letter-spacing: 0em;
     text-align: left;
     color: #707070;
-
     position: fixed;
     right: 21px;
 }
 
 .headerMenu {
     position: fixed;
-    right: 21px;
+    right: 40px;
+}
+
+.dropdown select {
+
+    width: 107px;
+    
 }
 
 
 .headerTitle2 {
     position: relative;
     left: 257px;
-
     font-family: Poppins;
-    font-size: 29px;
+    font-size: 26px;
     font-weight: 500;
     line-height: 44px;
     letter-spacing: 0em;
@@ -50,62 +54,47 @@
 }
 
 .dropdown {
-    width: 96px;
-    height: 24px;
-    border: 0px;
-
-    font-family: Poppins;
+width: 96px;
+height: 24px;
+border:none;
+font-family: Poppins;
 font-size: 16px;
 font-weight: 400;
 line-height: 24px;
 letter-spacing: 0em;
 text-align: center;
 
-}
-
-.dropdown::hover{
-    border: 0px;
-    background-color:blueviolet ;
-
-    font-family: Poppins;
-font-size: 16px;
-font-weight: 400;
-line-height: 24px;
-letter-spacing: 0em;
-text-align: center;
 
 }
+
+
 
 .boardCards {
     width: 81vw;
     height: 85vh;
     display: flex;
     gap: 21px;
+   
 }
 
 .scroll {
-    /* overflow-y: scroll; */
-    overflow-x: scroll;
+  
+    overflow-x: auto;
 }
 
 .boardCards_background {
     border-radius: 10px;
     width: 360px;
     height: 81vh;
-
     background: #eef2f5;
-
-
+    padding:5px;
     flex-shrink: 0;
-
-    overflow-y: scroll;
-
-    /* z-index: -1; */
-
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
+   
 }
 
 .boardCards_backgroundTitle {
@@ -119,8 +108,5 @@ text-align: center;
 
 .customModal{
     border-radius: 22px;
-    /* width: 40vw;
-    height: 50vh; */
-
     background: #fff;
 }

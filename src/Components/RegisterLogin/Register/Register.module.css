@@ -21,6 +21,7 @@
     border-radius: 11px;
     width: 30vw;
     height: 55px;
+    padding-left:10px;
 
     font-family: Open Sans;
     font-size: 19px;
@@ -83,48 +84,43 @@
 
     padding: 0px 0px 0px 0px;
 }
-/* .inputPassword::placeholder {
-    font-family: Open Sans;
-    font-size: 19px;
-    font-weight: 400;
-    line-height: 26px;
-    letter-spacing: 0em;
-    text-align: left;
 
-    background-image: url('../../../Assets/password.svg') , url('../../../Assets/passEye.svg');
-    background-repeat: no-repeat , no-repeat;
-    background-position: left 10px center, right 10px center;
-    background-size: contain, contain;
-
-    position: relative;
-
-    padding: 0px 0px 0px 0px;
-} */
 
 
 .registerButton {
     border-radius: 55px;
     padding: 0px 132px;
-    width: 30vw;
-    height: 55px;
-
+    width: 32vw;
+    height: 50px;
     background: #17a2b8;
-
     color: #fff;
-
     font-family: Open Sans;
     font-size: 19px;
     font-weight: 400;
     line-height: 26px;
     letter-spacing: 0em;
     text-align: center;
-
     border-color: #17a2b8;
-
     display: flex;
     align-items: center;
     justify-content: center;
+    border:none;
+    transition: transform 0.15s ease-in-out;
 
+    &:hover{
+        background-color: #24b5cb;
+        transform: scale(0.95);
+    }
+
+}
+
+
+.passwordIcon{
+    transition: transform 0.3s ease-in-out;
+    &:hover{
+        transform:  rotate(180deg);
+       
+    }
 }
 
 .error {

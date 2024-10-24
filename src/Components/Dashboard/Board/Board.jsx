@@ -5,7 +5,7 @@ import 'react-responsive-modal/styles.css';
 import { Modal } from 'react-responsive-modal';
 import AddModalElement from '../AddModalElement/AddModalElement';
 import { useSelector, useDispatch } from 'react-redux'
-import { closeModal1, openModal1, toggleLoader } from '../../../Redux/slice';
+import { closeModal1, openModal1} from '../../../Redux/slice';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
@@ -30,11 +30,7 @@ const Board = () => {
         setIsOpen(!isOpen);
     };
 
-    const handleItemClick = (item) => {
-        console.log(`Selected item: ${item}`);
-        toggleMenu();
-    };
-
+  
     // ?modal start
 
     const isOpenModal = useSelector(state => state.modal.isOpen);
@@ -141,7 +137,7 @@ const Board = () => {
                 isTosty ? (
                     toast.success('Url Copied!', {
                         position: "top-right",
-                        autoClose: 5000,
+                        autoClose: 3000,
                         hideProgressBar: false,
                         closeOnClick: false,
                         pauseOnHover: false,
@@ -250,7 +246,7 @@ const Board = () => {
 
             <ToastContainer
                 position="top-right"
-                autoClose={5000}
+                autoClose={3000}
                 hideProgressBar={false}
                 newestOnTop={false}
                 closeOnClick

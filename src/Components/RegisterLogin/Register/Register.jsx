@@ -158,7 +158,7 @@ import { toggleLoader } from '../../../Redux/slice';
                             value={formData.password}
                             onChange={handleChange}
                         />
-                        <img
+                        <img title={!showPassword?"show password":"hide password"}
                             src={showPassword ? passEye : passEye}
                             alt={showPassword ? 'Hide Password' : 'Show Password'}
                             className={StylesRegister.passwordIcon}
@@ -178,7 +178,7 @@ import { toggleLoader } from '../../../Redux/slice';
                             value={formData.confirmPassword}
                             onChange={handleChange}
                         />
-                        <img
+                        <img title={!showConfirmPassword?"show password":"hide password"}
                             src={showConfirmPassword ? passEye : passEye}
                             alt={showConfirmPassword ? 'Hide Confirm Password' : 'Show Confirm Password'}
                             className={StylesRegister.passwordIcon}

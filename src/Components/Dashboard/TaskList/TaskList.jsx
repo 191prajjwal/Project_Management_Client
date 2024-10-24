@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import StylesTaskList from './TaskList.module.css';
-import { Url } from '../../../Utils/Url';
 import axios from 'axios';
 
 const TaskList = ({ taskName, completed, taskListId, checkListId , myChecklistDisplay}) => {
 
-  const baseUrl = Url();
+  const baseUrl = import.meta.env.VITE_BASE_URL;
   const [inputValue, setInputValue] = useState(taskName);
   const [isChecked, setIsChecked] = useState(completed);
 
@@ -15,14 +14,14 @@ const TaskList = ({ taskName, completed, taskListId, checkListId , myChecklistDi
     setIsChecked(newChecked);
 
     try {
-      const response = await axios.post(`${baseUrl}/api/updatechecklist`, {
+      const response = await axios.post(`${baseUrl}/api/v1/tasks/update/checklist`, {
         taskId: taskListId,
         checklistItemId: checkListId,
         completed: newChecked,
       },
       {
           headers: {
-              'Authorization': `Bearer ${localStorage.getItem('token')}`
+              'Authorization': `${localStorage.getItem('token')}`
           }
       });
 

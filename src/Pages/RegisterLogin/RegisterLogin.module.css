@@ -31,9 +31,8 @@
     border: 1.38px solid #17a2b8;
     border-radius: 55px;
     padding: 0px 33px;
-    width: 30vw;
-    height: 55px;
-
+    width: 32vw;
+    height: 50px;
     font-family: Open Sans;
     font-size: 19px;
     font-weight: 400;
@@ -49,5 +48,17 @@
     align-items: center;
     justify-content: center;
 
+
+    transition: transform 0.15s ease-in-out;
+
+    &:hover{
+        background-color: #17A2B8;
+        transform: scale(0.95);
+        color:white;
+    }
+
 }
+
+
+
 
