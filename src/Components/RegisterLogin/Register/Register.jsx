@@ -10,6 +10,9 @@ import { toggleLoader } from '../../../Redux/slice';
 
     const baseUrl= import.meta.env.VITE_BASE_URL
 
+
+    console.log(baseUrl)
+
     const Register = ({ handleToggleForm }) => {
     const dispatch = useDispatch();
     const [formData, setFormData] = useState({
