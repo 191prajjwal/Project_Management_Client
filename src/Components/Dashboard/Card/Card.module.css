@@ -1,6 +1,6 @@
 .card {
     border-radius: 20px;
-    width: 281px;
+    width: 295px;
     height: auto;
 
     background: #fff;
@@ -19,9 +19,7 @@
     line-height: 21px;
     letter-spacing: 0em;
     text-align: left;
-
     color: #707070;
-
     position: relative;
     top: center;
 }
@@ -29,10 +27,11 @@
 .cardTitle {
     font-family: Poppins;
     font-size: 21px;
-    font-weight: 600;
+    font-weight: 500;
     line-height: 27px;
     letter-spacing: 0em;
     text-align: left;
+    margin-bottom: 10px;
 
 }
 
@@ -52,6 +51,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     border-color: transparent;
+   
 }
 
 .showBut {
@@ -60,14 +60,13 @@
     background-repeat: no-repeat;
     background-size: cover;
     border-color: transparent;
+    border-radius: 2px;
 }
 
 .cardFooter {
     display: flex;
-    /* background-color: #63c05b; */
-
-
-
+    
+ 
 }
 
 .butFooter {
@@ -82,6 +81,9 @@
     padding: 5px 10px;
     background: #eeecec;
     cursor: pointer;
+    margin-left:5px;
+    display: flex;
+ 
     &:hover{
         background-color: #f7f1f1;
     }
@@ -98,7 +100,9 @@
     display: inline;
     padding: 5px 10px;
     background: #eeecec;
-    cursor: pointer;
+
+  
+
 }
 
 .butFooterDatePassed {
@@ -112,7 +116,6 @@
     letter-spacing: 0em;
     text-align: left;
     color: #FFFFFF;
-    cursor:context-menu;
     &:hover{
         background-color: #eb3737;
     }
@@ -123,20 +126,14 @@
 
     border-radius: 8px;
     padding: 5px 10px;
-    /* width: 53px;
-    height: 22px; */
-
     font-family: Poppins;
     font-size: 12px;
     font-weight: 500;
     line-height: 12px;
     letter-spacing: 0em;
     text-align: left;
-
     color: #FFFFFF;
-
     background: #63c05b;
-    cursor:context-menu;
     &:hover{
         background-color: hsl(119, 100%, 26%);
     }
@@ -181,4 +178,90 @@
     width: 100%;
     height: 100%;
     background-color: transparent;
+}
+
+
+.threeDots{
+
+position: absolute;
+right: 2px;
+padding-top: 11px;
+padding-bottom: 15px;
+padding-left: 15px;
+padding-right: 7px;
+cursor:pointer
+
+}
+
+
+
+
+.logoutText {
+    font-family: 'Open Sans';
+    font-size: 21px;
+    font-weight: 600;
+    line-height: 19px;
+    letter-spacing: 0px;
+    text-align: center;
+}
+
+.yesLogout {
+    font-family: 'Poppins';
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 19px;
+    letter-spacing: 0em;
+    text-align: center;
+
+    color: #FFFFFF;
+    border-radius: 12px;
+    padding: 5px 15px;
+    width: 300px;
+    height: 40px;
+
+    box-shadow: 0 2px 12px 0 rgba(130, 105, 140, 0.2);
+    background: #17a2b8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.1s ease-in-out;
+}
+
+.yesLogout:hover {
+    background-color: #21aec4;
+    transform: scale(0.95);
+}
+
+.cancel {
+    font-family: 'Poppins';
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 19px;
+    letter-spacing: 0em;
+    text-align: center;
+    padding: 0px 15px;
+    color: #CF3636;
+
+    border: 1px solid #cf3636;
+    border-radius: 12px;
+    width: 300px;
+    height: 45px;
+
+    box-shadow: 0 2px 12px 0 rgba(130, 105, 140, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.1s ease-in-out;
+}
+
+.cancel:hover {
+    background-color: #ffffff;
+    transform: scale(0.95);
+}
+
+.customModal {
+    border-radius: 11px;
+    background: #fff;
 }

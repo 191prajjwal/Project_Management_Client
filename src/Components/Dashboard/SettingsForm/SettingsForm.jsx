@@ -181,6 +181,7 @@ const SettingsForm = () => {
             onChange={handleChange}
           />
           <img
+            title={showOldPassword ? 'Hide Password' : 'Show Password'}
             src={passEye}
             alt={showOldPassword ? 'Hide Password' : 'Show Password'}
             className={StyleSettingsForm.passwordIcon}
@@ -200,6 +201,8 @@ const SettingsForm = () => {
             onChange={handleChange}
           />
           <img
+
+          title={showPassword ? 'Hide Password' : 'Show Password'}
             src={passEye}
             alt={showPassword ? 'Hide Password' : 'Show Password'}
             className={StyleSettingsForm.passwordIcon}

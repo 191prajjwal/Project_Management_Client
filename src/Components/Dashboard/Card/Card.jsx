@@ -5,6 +5,7 @@ import TaskList from '../TaskList/TaskList';
 import { useDispatch } from 'react-redux';
 import { toggleBoardSwitch, toggleToastyAction, toggleLoader, openModal2, setTaskId } from '../../../Redux/slice';
 import Modal from 'react-responsive-modal';
+import { toast } from 'react-toastify';
 
 const Card = ({ priority, title, checklist, myTaskId, serverFetchedDate, collasped }) => {
 
@@ -189,18 +190,23 @@ const Card = ({ priority, title, checklist, myTaskId, serverFetchedDate, collasp
     const deleteTask = async (taskId) => {
         dispatch(toggleLoader());
         try {
-            const response = await axios.delete(`${baseUrl}/api/v1/tasks/delete/${taskId}`,
-                {
-                    headers: {
-                        'Authorization': `${localStorage.getItem('token')}`
-                    }
-                });
-
-            window.location.reload();
+            const response = await axios.delete(`${baseUrl}/api/v1/tasks/delete/${taskId}`, {
+                headers: {
+                    'Authorization': `${localStorage.getItem('token')}`
+                }
+            });
+    
+            toast.success('Task deleted successfully!');
+            
+            setTimeout(() => {
+                window.location.reload();
+            }, 1500);
+    
             dispatch(toggleLoader());
             return response.data;
+    
         } catch (error) {
-            throw new Error(error.response.data.error || 'Error deleting task');
+            toast.error(error.response?.data?.error || 'Error deleting task');
             dispatch(toggleLoader());
         }
     };
@@ -240,6 +246,24 @@ const Card = ({ priority, title, checklist, myTaskId, serverFetchedDate, collasp
         dispatch(setTaskId(taskId));
     }
 
+    const [isModalOpen, setIsModalOpen] = useState(false);
+const [taskIdToDelete, setTaskIdToDelete] = useState(null);
+
+const openModal = (taskId) => {
+    setTaskIdToDelete(taskId);
+    setIsModalOpen(true);
+};
+
+const closeModal = () => {
+    setIsModalOpen(false);
+    setTaskIdToDelete(null);
+};
+
+
+
+
+
+
     return (
         <>
             {console.log("myTaskId========", myTaskId)}
@@ -248,15 +272,20 @@ const Card = ({ priority, title, checklist, myTaskId, serverFetchedDate, collasp
             <div className={StylesCard.card}>
                 <div className={StylesCard.priorityText} style={{ display: 'flex', justifyContent: 'space-between' }}>
                     <div><img src={imgSrc} alt='high' />&nbsp;&nbsp;{priority}</div>
-                    <div style={{ position: 'relative', display: 'inline-block' }}>
+                    <div style={{ 
+                        position: 'relative', display: 'inline-block' }}>
                         <span>
-                            <img src='Assets/3dot.svg' alt='3dot' style={{ position: 'absolute', right: '11px', paddingTop: '11px', paddingBottom: '15px', paddingLeft: '15px', paddingRight: '7px' }} onClick={toggleOverlay} />
+                            <img src='Assets/3dot.svg' alt='3dot' 
+
+                            className={StylesCard.threeDots}
+                            
+                            onClick={toggleOverlay} />
                         </span>
                         {showOverlay && (
                             <div className={StylesCard.dropDown} style={{ display: 'flex', flexDirection: 'column', gap: '11px' }}>
                                 <div className={StylesCard.dropDownBut} onClick={() => editTask(myTaskId)}>Edit</div>
                                 <div className={StylesCard.dropDownBut} onClick={() => generateShareableLink(myTaskId)}>Share</div>
-                                <div className={StylesCard.dropDownButDel} onClick={() => deleteTask(myTaskId)}>Delete</div>
+                                <div className={StylesCard.dropDownButDel} onClick={()=>openModal() }>Delete</div>
                             </div>
                         )}
                     </div>
@@ -283,14 +312,14 @@ const Card = ({ priority, title, checklist, myTaskId, serverFetchedDate, collasp
                 )}
 
                 <br />
-                <div className={StylesCard.cardFooter} style={{ display: 'flex', justifyContent: 'flex-end', paddingRight: '1px' }}>
+                <div className={StylesCard.cardFooter} style={{ display: 'flex', justifyContent: 'space-between', paddingRight: '15px'}}>
                     {
                         newDueDate ?
                             <div className={dueDatePassed && changeBoard !== "done" ? StylesCard.butFooterDatePassed : changeBoard === "done" ? StylesCard.butFooterDateGreen : StylesCard.butFooterDate}>{newDueDate}</div>
                             : null
                     }
 
-                    <div className={StylesCard.cardFooter} style={{ position: 'relative', right: '-21px', display: 'flex', gap: '1px' }}>
+                    <div className={StylesCard.cardFooter} style={{ display: 'flex', gap: '1px', flex:"1",justifyContent:"flex-end" }}>
                         {handleChange(changeBoard)}
                     </div>
                 </div>
@@ -298,6 +327,28 @@ const Card = ({ priority, title, checklist, myTaskId, serverFetchedDate, collasp
             {showOverlay && (
                 <div className={StylesCard.overlay} onClick={toggleOverlay}></div>
             )}
+
+
+
+<Modal
+    open={isModalOpen}
+    onClose={closeModal}
+    center
+    showCloseIcon={false}
+    classNames={{ modal: `${StylesCard.customModal}` }}
+>
+    <div>
+        <div className={StylesCard.logoutText}>Are you sure you want to Delete?</div>
+        <br />
+        <div className={StylesCard.yesLogout} onClick={() => deleteTask(myTaskId)}>Yes, Delete</div>
+        <br />
+        <div className={StylesCard.cancel} onClick={closeModal}>Cancel</div>
+    </div>
+</Modal>
+
+
+
+
 
 
         </>

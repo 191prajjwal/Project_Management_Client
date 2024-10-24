@@ -116,6 +116,7 @@
 
 .passwordIcon{
     transition: transform 0.3s ease-in-out;
+    cursor:pointer;
     &:hover{
         transform:  rotate(180deg);
        
