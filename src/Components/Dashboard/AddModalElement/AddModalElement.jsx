@@ -2,7 +2,7 @@ import React, { useState, forwardRef } from 'react';
 import StylesAddModalElement from './AddModalElement.module.css';
 import ModalTaskList from '../ModalTaskList/ModalTaskList';
 import { useDispatch } from 'react-redux';
-import { closeModal1, toggleLoader } from '../../../Redux/slice';
+import { closeModal1 } from '../../../Redux/slice';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from 'axios';
@@ -18,9 +18,7 @@ const AddModalElement = () => {
     const myBoard = 'toDo';
     const [checklists, setChecklists] = useState([]);
 
-
     const handleCloseModal = () => {
-        // dispatch(toggleLoader());
         dispatch(closeModal1());
     };
 
@@ -29,30 +27,37 @@ const AddModalElement = () => {
     };
 
     const handleTaskCheck = (taskId, completed) => {
-        // Handle task checkbox click
         console.log('Task checkbox clicked - Task ID:', taskId, 'Completed:', completed);
     };
 
     const handleTaskDelete = (taskId) => {
-        // Handle task delete button click
         console.log('Task delete button clicked - Task ID:', taskId);
     };
 
     const handleSave = () => {
         const title = document.getElementById('taskTitle').value;
         const priority = selectedPriority;
-        const dueDate = startDate ? startDate : null; 
+        const dueDate = startDate ? startDate : null;
         const userId = uId;
         const board = myBoard;
 
         // Filter out empty tasks from the checklist
         const nonEmptyChecklist = checklists.filter(item => item.inputValue.trim() !== '');
 
-        // Check if there are any non-empty tasks
+        // Validation for title, priority, and checklist
+        if (!title) {
+            toast.error('Title is required.');
+            return;
+        }
+
+        if (!priority) {
+            toast.error('Priority is required.');
+            return;
+        }
+
         if (nonEmptyChecklist.length === 0) {
-            console.log('No tasks to save.');
-            toast.error('No tasks to save.');
-            return; // Don't proceed if there are no tasks to save
+            toast.error('At least one checklist item is required.');
+            return;
         }
 
         const checklist = nonEmptyChecklist.map(item => ({
@@ -74,7 +79,7 @@ const AddModalElement = () => {
         axios.post(`${baseUrl}/api/v1/tasks/create`, data,
             {
                 headers: {
-                    'Authorization': `${localStorage.getItem('token')}`
+                    'Authorization': `${token}`
                 }
             })
             .then(response => {
@@ -85,7 +90,7 @@ const AddModalElement = () => {
             })
             .catch(error => {
                 console.error('Error adding task:', error);
-                toast.error(error);
+                toast.error(error.message);
             });
     };
 

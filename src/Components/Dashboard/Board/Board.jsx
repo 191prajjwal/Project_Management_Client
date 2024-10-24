@@ -52,7 +52,6 @@ const Board = () => {
 
     const fetchTasksToDo = async (userId, boardDate) => {
         try {
-            const token = localStorage.getItem('token');
             const response = await axios.post(`${baseUrl}/api/v1/tasks/filter`, { userId, boardDate },
                 {
                     headers: {
