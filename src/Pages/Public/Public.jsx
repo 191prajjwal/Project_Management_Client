@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import StylePublic from './Public.module.css';
 import PublicTaskList from '../../Components/Public/PublicTaskList/PublicTaskList';
-import { Url } from '../../Utils/Url';
 import logoimg from '../../Assets/logo.svg';
 import highPriorityImg from '../../Assets/high.svg';
 import moderatePriorityImg from '../../Assets/moderate.svg';
@@ -10,14 +9,14 @@ import lowPriorityImg from '../../Assets/low.svg';
 import NotFound from '../../Components/Dashboard/NotFound/NotFound';
 
 const Public = ({ taskId }) => {
-    const baseUrl = Url();
+    const baseUrl = import.meta.env.VITE_BASE_URL;
 
     const [publicTaskData, setPublicTaskData] = useState(0);
     let imgSrc = null;
 
     const showPublicTaskData = async (taskId) => {
         try {
-            const response = await axios.get(`${baseUrl}/api/publictasks/${taskId}`);
+            const response = await axios.get(`${baseUrl}/api/v1/tasks/publicview/${taskId}`);
             let tasks = response.data.tasks;
             tasks.map((data) => {
                 setPublicTaskData(data);

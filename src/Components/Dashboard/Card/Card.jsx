@@ -212,7 +212,7 @@ const Card = ({ priority, title, checklist, myTaskId, serverFetchedDate, collasp
         dispatch(toggleLoader());
         setShowOverlay(!showOverlay);
         try {
-            const response = await axios.get(`${baseUrl}/api/v1/link/sharelink${taskId}`);
+            const response = await axios.get(`${baseUrl}/api/v1/link/sharelink/${taskId}`);
             setShareableLink(response.data.shareableLink);
 
             navigator.clipboard.writeText(response.data.shareableLink);

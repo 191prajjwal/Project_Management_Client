@@ -19,63 +19,63 @@
 }
 
 @media screen and (max-width: 425px) {
-    .inputTask {
-      width: 70vw; 
-      box-sizing: border-box;
-    }
+  .inputTask {
+    width: 70vw; 
+    box-sizing: border-box;
   }
+}
 
-  @media screen and (min-width: 1440px) {
-    .inputTask {
-      width: 49vw; 
-      box-sizing: border-box;
-    }
+@media screen and (min-width: 1440px) {
+  .inputTask {
+    width: 49vw; 
+    box-sizing: border-box;
   }
+}
 
 .inputTask::placeholder {
-    font-family: Inter;
-    font-size: 21px;
-    font-weight: 400;
-    line-height: 17px;
-    letter-spacing: 0em;
-    text-align: left;
-    color: #767575;
+  font-family: Inter;
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 17px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #767575;
 
-    padding-left: 21px;
+  padding-left: 21px;
 }
 
 .checkbox {
-    width: 20px;
-    height: 20px;
-    margin-right: 10px;
-    border-radius: 6px;
-    border: 2px solid #e2e2e2;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  border-radius: 6px;
+  border: 2px solid #e2e2e2;
 
 
-    position: relative;
-    top: 45px;
-    left: 25px;
-    float: left;
+  position: relative;
+  top: 45px;
+  left: 25px;
+  float: left;
 }
 
 .deleteButton {
-    background-color: transparent;
-    border-color: transparent;
+  background-color: transparent;
+  border-color: transparent;
 
-    position: relative;
-    top: -43px;
-    right: 21px;
-    float: right;
+  position: relative;
+  top: -43px;
+  right: 21px;
+  float: right;
 }
 
 .addButton {
-    font-family: Inter;
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 19px;
-    letter-spacing: 0em;
-    text-align: left;
+  font-family: Inter;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19px;
+  letter-spacing: 0em;
+  text-align: left;
 
-    color: #767575;
+  color: #767575;
 }
 
