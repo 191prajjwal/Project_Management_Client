@@ -1,5 +1,6 @@
 import React,{useEffect} from 'react'
 import pageNotFound from '../../../Assets/404new.gif';
+
 import notLoading from '../../../Assets/Loading-bar-new.gif'
 
 const NotFound = () => {
