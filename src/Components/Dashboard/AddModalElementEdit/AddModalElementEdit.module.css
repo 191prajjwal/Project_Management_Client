@@ -1,10 +1,4 @@
-/* .addModalElement {
-    border-radius: 22px;
-    width: 40vw;
-    height: 50vh;
 
-    background: #fff;
-} */
 
 .title {
     font-family: Inter;
@@ -53,7 +47,7 @@
     border: 1px solid #e2e2e2;
     border-radius: 8px;
     padding: 5px 10px;
-    /* width: 135px; */
+  
     height: 31px;
 
     font-family: Poppins;
@@ -66,6 +60,8 @@
     color: #767575;
 
     background-color: transparent;
+    margin-left: 5px;
+
 
     
 }
@@ -74,9 +70,8 @@
     border-radius: 8px;
     border: solid transparent;
     padding: 5px 10px;
-    /* width: 175px;
-    height: 31px; */
-
+ 
+    margin-left: 5px;
     background: #eeecec;
 
     font-family: Poppins;
@@ -98,16 +93,7 @@
     height: 223px;
 }
 
-/* .addButton {
-    font-family: Inter;
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 19px;
-    letter-spacing: 0em;
-    text-align: left;
 
-    color: #767575;
-} */
 
 .button1 {
     font-family: Poppins;
@@ -131,7 +117,16 @@
     height: 45px;
 
     background-color: transparent;
+    transition:transform 0.1s ease-in-out;
+
+
+    &:hover{
+       transform: scale(0.95);
+    }
 }
+
+
+
 
 .cancel {
     font-family: Poppins;
@@ -154,6 +149,12 @@
     height: 45px;
 
     background-color: transparent;
+    transition:transform 0.1s ease-in-out;
+
+
+    &:hover{
+       transform: scale(0.95);
+    }
 }
 
 .save {
@@ -172,4 +173,10 @@
 
     background: #17a2b8;
     border-color: transparent;
+    transition:transform 0.1s ease-in-out;
+
+
+    &:hover{
+       transform: scale(0.95);
+    }
 }

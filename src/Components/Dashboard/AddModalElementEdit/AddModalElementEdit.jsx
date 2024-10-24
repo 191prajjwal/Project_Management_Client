@@ -17,7 +17,7 @@ const AddModalElementEdit = ({ taskId }) => {
     const uId = localStorage.getItem('id');
     const myBoard = 'toDo';
     const [checklists, setChecklists] = useState([]);
-    const [taskTitle, setTaskTitle] = useState(''); 
+    const [taskTitle, setTaskTitle] = useState('');
 
     useEffect(() => {
         fetchTaskData();
@@ -35,7 +35,6 @@ const AddModalElementEdit = ({ taskId }) => {
                 setStartDate(task.dueDate ? task.dueDate : null);
                 setChecklists(task.checklist);
                 setTaskTitle(task.title);
-
                 console.log("task.checklist======", task.checklist);
             })
             .catch(error => {
@@ -77,10 +76,18 @@ const AddModalElementEdit = ({ taskId }) => {
         // Filter out empty tasks from the checklist
         const nonEmptyChecklist = checklists.filter(item => item.taskName.trim() !== '');
 
-        // Check if there are any non-empty tasks
+        // Check if title, priority, and checklist are valid
+        if (!taskTitle.trim()) {
+            toast.error('Title can\'t be empty.');
+            return;
+        }
+        if (!priority) {
+            toast.error('Please choose a priority.');
+            return;
+        }
         if (nonEmptyChecklist.length === 0) {
-            toast.error('No tasks to save.');
-            return; // Don't proceed if there are no tasks to save
+            toast.error('Please choose at least one checklist item.');
+            return;
         }
 
         const checklist = nonEmptyChecklist.map(item => ({
@@ -136,7 +143,7 @@ const AddModalElementEdit = ({ taskId }) => {
                         className={StylesAddModalElementEdit.inputTitle}
                         placeholder='Enter Task Title'
                         value={taskTitle}
-                        onChange={(e) => setTaskTitle(e.target.value)} // Updating taskTitle state onChange
+                        onChange={(e) => setTaskTitle(e.target.value)} 
                     />
                 </div>
                 <br />
@@ -188,8 +195,9 @@ const AddModalElementEdit = ({ taskId }) => {
                 </div>
                 <br />
                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <div style={{ display: 'flex', alignContent: 'center', alignItems: 'center' }}>
+                    <div style={{ display: 'flex', alignContent: 'center', alignItems: 'center'}}>
                         <DatePicker
+                               className={StylesAddModalElementEdit.datePicker}
                             selected={startDate}
                             onChange={(date) => setStartDate(date)}
                             customInput={<DateInput />}
