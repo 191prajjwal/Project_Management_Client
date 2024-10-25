@@ -111,6 +111,7 @@ const SettingsForm = () => {
               localStorage.removeItem('id');
               localStorage.removeItem('name');
               localStorage.removeItem('das');
+              localStorage.removeItem('email');
               window.location.href = '/'; 
 
           },1500)
@@ -132,13 +133,14 @@ const SettingsForm = () => {
                     localStorage.removeItem('id');
                     localStorage.removeItem('name');
                     localStorage.removeItem('das');
+                    localStorage.removeItem('email');
                     window.location.href = '/'; 
 
                 },1500)
 
         } 
         
-        localStorage.setItem('name', updatedDocument.name);
+        Item('name', updatedDocument.name);
         localStorage.setItem('email', updatedDocument.email);
         
         // Clear the form fields

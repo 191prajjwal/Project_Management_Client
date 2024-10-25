@@ -35,6 +35,7 @@ const Dashboard = () => {
         localStorage.removeItem('id');
         localStorage.removeItem('name');
         localStorage.removeItem('das');
+        localStorage.removeItem('email');
         window.location.href = '/';
     }
 

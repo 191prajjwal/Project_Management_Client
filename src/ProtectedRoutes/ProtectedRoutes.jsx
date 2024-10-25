@@ -13,6 +13,7 @@ const ProtectedRoutes = ({ children }) => {
       localStorage.removeItem('token');
       localStorage.removeItem('id');
       localStorage.removeItem('name');
+      localStorage.removeItem("email")
       window.location.reload();
     }
   });
