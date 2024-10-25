@@ -46,7 +46,7 @@ const Card = ({ priority, title, checklist, myTaskId, serverFetchedDate, collasp
 
             setChangeBoard(response.data.task.board);
             dispatch(toggleLoader());
-            console.log(response.data.task.board);
+            console.log("tes1  data",response.data.task.board);
         } catch (error) {
             console.error('Error updating board:', error);
             dispatch(toggleLoader());
@@ -110,23 +110,26 @@ const Card = ({ priority, title, checklist, myTaskId, serverFetchedDate, collasp
         const today = new Date();
         const formatted = getFormattedDate(today);
         setDueDate(formatted);
-
+    
         const serverDate = serverFetchedDate;
         if (!serverDate) {
             return;
         }
-
+    
+        // Parse serverFetchedDate without timezone adjustments to prevent day decrement
         const dateParts = serverDate.split('T')[0].split('-');
-        const serverDueDate = new Date(`${dateParts[0]}-${dateParts[1]}-${dateParts[2]}`);
+        const serverDueDate = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
 
+    
         setNewDueDate(getFormattedDate(serverDueDate));
-
+    
         if (serverDueDate < today) {
             setDueDatePassed(true);
         } else {
             setDueDatePassed(false);
         }
     }, [serverFetchedDate]);
+    
 
     function getFormattedDate(date) {
         const day = date.getDate();
@@ -266,9 +269,8 @@ const closeModal = () => {
 
     return (
         <>
-            {console.log("myTaskId========", myTaskId)}
+           
             {img(priority)}
-            {console.log("collasped========", collasped)}
             <div className={StylesCard.card}>
                 <div className={StylesCard.priorityText} style={{ display: 'flex', justifyContent: 'space-between' }}>
                     <div><img src={imgSrc} alt='high' />&nbsp;&nbsp;{priority}</div>
@@ -291,7 +293,9 @@ const closeModal = () => {
                     </div>
                 </div>
                 <br />
-                <div className={StylesCard.cardTitle} title={title}>{title.length<50?title:title.slice(0,50)+"..."}</div>
+                <div className={StylesCard.cardTitle}>{title.length<45?title:title.slice(0,44)+"..."}
+                {title.length>=45 && <span className={StylesCard.tooltiptext}>{title}</span>} 
+                </div>
                 <div className={StylesCard.checklist}>
                     Checklist ({
                         checksMarked
@@ -315,7 +319,7 @@ const closeModal = () => {
                 <div className={StylesCard.cardFooter} style={{ display: 'flex', justifyContent: 'space-between', paddingRight: '15px'}}>
                     {
                         newDueDate ?
-                            <div className={dueDatePassed && changeBoard !== "done" ? StylesCard.butFooterDatePassed : changeBoard === "done" ? StylesCard.butFooterDateGreen : StylesCard.butFooterDate}>{newDueDate}</div>
+                            <div className={dueDatePassed && changeBoard !== "done"  ? StylesCard.butFooterDatePassed : changeBoard === "done" ? StylesCard.butFooterDateGreen : priority==="HIGH PRIORITY"?StylesCard.butFooterDatePassed:StylesCard.butFooterDate}>{newDueDate}</div>
                             : null
                     }
 

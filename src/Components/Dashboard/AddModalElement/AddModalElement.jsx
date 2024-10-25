@@ -37,7 +37,8 @@ const AddModalElement = () => {
     const handleSave = () => {
         const title = document.getElementById('taskTitle').value;
         const priority = selectedPriority;
-        const dueDate = startDate ? startDate : null;
+        const dueDate = startDate ? new Date(startDate.getTime() - startDate.getTimezoneOffset() * 60000).toISOString() : null;
+
         const userId = uId;
         const board = myBoard;
 

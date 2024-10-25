@@ -288,3 +288,23 @@ cursor:pointer
     border-radius: 11px;
     background: #fff;
 }
+
+
+.cardTitle .tooltiptext {
+    display: none;
+    width: 400px;
+    background-color: rgb(67, 69, 71);
+    color: #ffffff;
+    text-align: center;
+    padding: 10px;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1;
+    font-size: 0.7rem;
+    text-emphasis: left;
+    
+  }
+  
+  .cardTitle:hover .tooltiptext {
+    display: inline-block;
+  }

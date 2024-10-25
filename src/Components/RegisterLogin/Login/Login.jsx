@@ -71,7 +71,7 @@ const Login = () => {
             setTimeout(() => {
                 window.location.href = '/dashboard';
                 dispatch(toggleLoader());
-            }, 2000);
+            }, 1000);
 
         } catch (error) {
             toast.error(error.response.data.message);

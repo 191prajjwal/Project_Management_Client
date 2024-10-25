@@ -11,8 +11,8 @@ const SettingsForm = () => {
   const baseUrl = import.meta.env.VITE_BASE_URL;
   const [formData, setFormData] = useState({
     _id: localStorage.getItem('id'),
-    name: '',
-    email: '',
+    name: localStorage.getItem('name') || '',
+    email: localStorage.getItem('email') || '',
     oldPassword: '',
     newPassword: ''
   });
@@ -101,8 +101,23 @@ const SettingsForm = () => {
         }
         if (formData.email) {
           toast.success('Email updated successfully!');
+
+          toast.error('logging out.....');
+
+        
+          setTimeout(()=>{
+
+              localStorage.removeItem('token');
+              localStorage.removeItem('id');
+              localStorage.removeItem('name');
+              localStorage.removeItem('das');
+              window.location.href = '/'; 
+
+          },1500)
+
+
         }
-        if (formData.oldPassword && formData.newPassword) {
+        if (formData.oldPassword && formData.newPassword ) {
           
 
             toast.success('Password updated successfully!');

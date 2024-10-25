@@ -43,6 +43,14 @@ const Analytics = () => {
     fetchData();
   }, []);
 
+
+
+  const padZero=(task)=>{
+
+    return `${task}`.padStart(2,"0")
+
+  }
+
   return (
     <>
       <div className={StylesAnalytics.analytics}>
@@ -64,7 +72,7 @@ const Analytics = () => {
                  }}>
                   <span className={StylesAnalytics.anTitle}>Backlog Tasks</span>{" "}
                   <span className={StylesAnalytics.anNo}>
-                    {analyticsData.backlogTasks}
+                    {padZero(analyticsData.backlogTasks)}
                   </span>
                 </span>
               </div>
@@ -76,7 +84,7 @@ const Analytics = () => {
                 justifyContent:"space-between" }}>
                   <span className={StylesAnalytics.anTitle}>To-do Tasks</span>{" "}
                   <span className={StylesAnalytics.anNo}>
-                    {analyticsData.todoTasks}
+                    {padZero(analyticsData.todoTasks)}
                   </span>
                 </span>
               </div>
@@ -90,7 +98,7 @@ const Analytics = () => {
                     In-Progress Tasks
                   </span>{" "}
                   <span className={StylesAnalytics.anNo}>
-                    {analyticsData.inProgressTasks}
+                    {padZero(analyticsData.inProgressTasks)}
                   </span>
                 </span>
               </div>
@@ -102,7 +110,7 @@ const Analytics = () => {
                     Completed Tasks
                   </span>{" "}
                   <span className={StylesAnalytics.anNo}>
-                    {analyticsData.completedTasks}
+                    {padZero(analyticsData.completedTasks)}
                   </span>
                 </span>
               </div>
@@ -117,7 +125,7 @@ const Analytics = () => {
                 justifyContent:"space-between"  }}>
                   <span className={StylesAnalytics.anTitle}>Low Priority</span>{" "}
                   <span className={StylesAnalytics.anNo}>
-                    {analyticsData.lowPriorityTasks}
+                    {padZero(analyticsData.lowPriorityTasks)}
                   </span>
                 </span>
               </div>
@@ -131,7 +139,7 @@ const Analytics = () => {
                     Moderate Priority
                   </span>{" "}
                   <span className={StylesAnalytics.anNo}>
-                    {analyticsData.moderatePriorityTasks}
+                    {padZero(analyticsData.moderatePriorityTasks)}
                   </span>
                 </span>
               </div>
@@ -143,7 +151,7 @@ const Analytics = () => {
                 justifyContent:"space-between" }}>
                   <span className={StylesAnalytics.anTitle}>High Priority</span>{" "}
                   <span className={StylesAnalytics.anNo}>
-                    {analyticsData.highPriorityTasks}
+                    {padZero(analyticsData.highPriorityTasks)}
                   </span>
                 </span>
               </div>
@@ -155,7 +163,7 @@ const Analytics = () => {
                     Due Date Tasks
                   </span>{" "}
                   <span className={StylesAnalytics.anNo}>
-                    {analyticsData.dueDateTasks}
+                    {padZero(analyticsData.dueDateTasks)}
                   </span>
                 </span>
               </div>

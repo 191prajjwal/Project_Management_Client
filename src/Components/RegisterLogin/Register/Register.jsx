@@ -74,7 +74,7 @@ import { toggleLoader } from '../../../Redux/slice';
         
                 setTimeout(()=>{
                     handleToggleForm();
-                },2000)
+                },1000)
 
             } catch (error) {
                 console.error(error?.response?.data);
