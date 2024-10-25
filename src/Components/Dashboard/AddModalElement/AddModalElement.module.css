@@ -24,17 +24,15 @@
     border: 1px solid #e2e2e2;
     border-radius: 4px;
     padding: 10px 16px;
-    /* width: 588px; */
-    height: 44px;
+    height: 30px;
     background: #fff;
-
     width: 93%;
-    font-size: 21px;
+    font-size: 18px;
 }
 
 .inputTitle::placeholder {
     font-family: Inter;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 400;
     line-height: 24px;
     letter-spacing: 0.5px;
@@ -161,3 +159,35 @@
     background: #17a2b8;
     border-color: transparent;
 }
+
+
+/* css for the dropdown select */
+
+/* .selectInput{
+    border: 1px solid #e2e2e2;
+    border-radius: 4px;
+    padding: 10px 16px;
+    height: 44px;
+    background: #fff;
+    width: 87%;
+    font-size: 15px;
+    margin-left:5px;
+    color: #494949;
+}
+
+
+.selectInput option[value=""]
+{
+   color: #9B959F;
+}
+
+.selectInput option{
+
+color:rgb(17, 17, 17)
+} */
+
+
+
+
+
+
