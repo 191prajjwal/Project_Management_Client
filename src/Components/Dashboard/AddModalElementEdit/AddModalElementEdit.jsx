@@ -195,9 +195,9 @@ const AddModalElementEdit = ({ taskId }) => {
                 </div>
                 <br />
                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <div style={{ display: 'flex', alignContent: 'center', alignItems: 'center'}}>
+                    <div style={{ display: 'flex', alignContent: 'center', alignItems: 'center'}} >
                         <DatePicker
-                               className={StylesAddModalElementEdit.datePicker}
+                               
                             selected={startDate}
                             onChange={(date) => setStartDate(date)}
                             customInput={<DateInput />}

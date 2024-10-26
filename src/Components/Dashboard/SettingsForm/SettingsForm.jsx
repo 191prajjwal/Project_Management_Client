@@ -140,7 +140,7 @@ const SettingsForm = () => {
 
         } 
         
-        Item('name', updatedDocument.name);
+        localStorage.setItem('name', updatedDocument.name);
         localStorage.setItem('email', updatedDocument.email);
         
         // Clear the form fields
