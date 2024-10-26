@@ -119,7 +119,15 @@
     height: 45px;
 
     background-color: transparent;
+    position: relative;
+    left:-15px;
 }
+
+.dateDiv{
+    position: absolute;
+    left:40px;
+   }
+
 
 .cancel {
     font-family: Poppins;
@@ -161,6 +169,8 @@
     background: #17a2b8;
     border-color: transparent;
 }
+
+
 
 
 /* css for the dropdown select */
