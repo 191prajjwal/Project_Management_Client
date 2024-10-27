@@ -1,4 +1,4 @@
-import React, { useState, forwardRef } from "react";
+import React, { useState, forwardRef, useEffect } from "react";
 import StylesAddModalElement from "./AddModalElement.module.css";
 import ModalTaskList from "../ModalTaskList/ModalTaskList";
 import { useDispatch } from "react-redux";
@@ -14,9 +14,12 @@ const AddModalElement = () => {
   const [selectedPriority, setSelectedPriority] = useState(null);
   const dispatch = useDispatch();
   const [startDate, setStartDate] = useState(null);
+
+
   const uId = localStorage.getItem("id");
   const myBoard = "toDo";
   const [checklists, setChecklists] = useState([]);
+  const [assignTo, setAssignTo] = useState("");
 
   const handleCloseModal = () => {
     dispatch(closeModal1());
@@ -84,6 +87,7 @@ const AddModalElement = () => {
       dueDate,
       userId,
       board,
+      assignTo,
     };
 
     console.log(data);
@@ -117,6 +121,7 @@ const AddModalElement = () => {
   ));
 
   let checkMarkMe = 0;
+
 
   return (
     <>

@@ -111,4 +111,168 @@ text-align: center;
     background: #fff;
 }
 
+.addPeopleModal{
 
+    border-radius: 22px;
+    background: #fff;
+    width:400px
+
+}
+
+
+
+
+.addPeople{
+    font-size: 0.85rem;
+    color: gray;
+    text-align: centre;
+    font-weight: 200px;
+    position: relative;
+    bottom:3px;
+    margin-left:10px;
+    cursor: pointer;
+    &:hover{
+        color:#313131;
+        
+    }
+   
+}
+
+
+.emailList{
+    list-style-type: none;
+    position: relative;
+    left:-20px;
+    overflow: auto;
+    max-height: 130px;
+    border: 1px solid rgb(207, 206, 206);
+    position: relative;
+    left:1px;
+    padding:10px;
+    border-radius: 5px;
+}
+
+.emailListItems{
+    margin-bottom:10px;
+    background-color: #e4eef953;
+    border-radius: 15px;
+    padding:10px;
+
+    &:hover{
+        background-color: #a4cfff53;
+    }
+}
+
+
+.emailSpan{
+    margin-left:10px;
+    
+}
+
+.dropdownContainer{
+    background-color: #a4cfff53;
+    padding:5px 40px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    transition: transform 0.3s ease-in-out;
+    &:hover{
+        transform: scale(0.95);
+    }
+}
+
+
+.dropdownLabel{
+   
+    font-weight: 500;
+}
+
+
+.buttonGroup{
+    display: flex;
+    justify-content: space-between;
+    margin-top:50px;
+}
+
+.closeBtn , .clearBtn, .assignBtn{
+    font-family: 'Poppins';
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    padding:5px 20px;
+    border:none;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px 0 rgba(130, 105, 140, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.1s ease-in-out;
+    color:white;
+    &:hover{
+        transform: scale(0.95);
+    }
+}
+
+
+
+    .clear button{
+
+        font-family: 'Poppins';
+        font-size: 0.9rem;
+        padding:7px 10px;
+        margin-bottom: 10px;
+        border:none;
+        width:100%;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: transform 0.2s ease-in-out;
+        color:black;
+        background-color: #b6d9ff5c;
+        &:hover{
+            transform: scale(0.96);
+            background-color:#7bb8f953 ;
+        }
+    
+    }
+    
+
+
+.assignBtn{
+    background-color: #21aec4;
+}
+
+.closeBtn{
+    background-color:  #CF3636;
+}
+
+
+
+
+
+.selectedEmail p{
+
+    background-color: #e4f4ff;
+    padding: 8px;
+    border-radius: 5px;
+    text-align: center;
+    
+
+}
+
+
+.selectedEmailItem{
+    background-color: #1985ff53;
+}
+
+.nameIcon{
+
+    background: #FFEBEB;
+
+    padding:7px;
+    border-radius: 50%;
+    font-size: 14px;
+    position: relative;
+   margin-right:10px ;
+}

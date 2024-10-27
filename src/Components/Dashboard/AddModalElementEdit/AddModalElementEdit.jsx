@@ -18,6 +18,7 @@ const AddModalElementEdit = ({ taskId }) => {
   const myBoard = "toDo";
   const [checklists, setChecklists] = useState([]);
   const [taskTitle, setTaskTitle] = useState("");
+  const [assignTo,setAssignTo]=useState("")
 
   useEffect(() => {
     fetchTaskData();
@@ -36,6 +37,7 @@ const AddModalElementEdit = ({ taskId }) => {
         setStartDate(task.dueDate ? task.dueDate : null);
         setChecklists(task.checklist);
         setTaskTitle(task.title);
+        setAssignTo(task.assignTo)
         console.log("task.checklist======", task.checklist);
       })
       .catch((error) => {
@@ -72,19 +74,17 @@ const AddModalElementEdit = ({ taskId }) => {
 
   const handleSave = () => {
     const priority = selectedPriority;
-    const dueDate = startDate
-      ? new Date(
-          startDate.getTime() - startDate.getTimezoneOffset() * 60000
-        ).toISOString()
-      : null;
+    const dueDate = startDate instanceof Date
+      ? new Date(startDate.getTime() - startDate.getTimezoneOffset() * 60000).toISOString()
+      : startDate; // use the existing value if it's not a Date object
+    
     const userId = uId;
     const board = myBoard;
-
-
+  
     const nonEmptyChecklist = checklists.filter(
       (item) => item.taskName.trim() !== ""
     );
-
+  
     if (!taskTitle.trim()) {
       toast.error("Title can't be empty.");
       return;
@@ -97,12 +97,12 @@ const AddModalElementEdit = ({ taskId }) => {
       toast.error("Please choose at least one checklist item.");
       return;
     }
-
+  
     const checklist = nonEmptyChecklist.map((item) => ({
       taskName: item.taskName,
       completed: item.completed,
     }));
-
+  
     const data = {
       title: taskTitle,
       priority,
@@ -110,8 +110,11 @@ const AddModalElementEdit = ({ taskId }) => {
       dueDate,
       userId,
       board,
+      assignTo
     };
 
+    console.log(data)
+  
     axios
       .put(`${baseUrl}/api/v1/tasks/update/${taskId}`, data, {
         headers: {
@@ -121,13 +124,18 @@ const AddModalElementEdit = ({ taskId }) => {
       .then((response) => {
         toast.success(response.data.message);
         handleCloseModal();
+
+
+       setTimeout(()=>{
         window.location.reload();
+       },1000)
       })
       .catch((error) => {
         console.error("Error updating task:", error);
         toast.error(error);
       });
   };
+  
 
   const DateInput = forwardRef(({ value, onClick }, ref) => (
     <button
@@ -140,6 +148,62 @@ const AddModalElementEdit = ({ taskId }) => {
   ));
 
   let checkMarkMe = 0;
+
+
+  const [selectedAssign, setSelectedAssign] = useState({});
+
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const [userData,setUserData]=useState([])
+  const fetchUserData = async () => {
+    const token = localStorage.getItem("token");
+    try {
+      const response = await axios.get(`${baseUrl}/api/v1/users/userdata`, {
+        headers: {
+          Authorization: `${token}`,
+        },
+      });
+      console.log("userData",response);
+      setUserData(response.data.userData);
+    } catch (error) {
+      console.error("Error fetching user Data:", error);
+      toast.error("Failed to fetch email options.");
+    }
+  };
+
+  const handleEmailSelection = (id, email) => {
+    setSelectedAssign({ id, email });
+    setAssignTo(id); 
+    setDropdownOpen(false); 
+  };
+
+  const handleName = (name) => {
+    const words = name.trim().split(" ");
+
+    if (words.length === 1) {
+      return (words[0].charAt(0) + (words[0].charAt(1) || "")).toUpperCase();
+    } else if (words.length > 1) {
+      return (words[0].charAt(0) + words[1].charAt(0)).toUpperCase();
+    }
+
+    return "";
+  };
+
+
+  useEffect(()=>{
+    fetchUserData()
+  },[])
+
+
+  const handleClear=()=>{
+   
+    setAssignTo("");                
+  setSelectedAssign({});          
+  setDropdownOpen(false); 
+
+  }
+
+
 
   return (
     <>
@@ -202,6 +266,66 @@ const AddModalElementEdit = ({ taskId }) => {
             </button>
           </div>
         </div>
+
+<br />
+ <div > <span className={StylesAddModalElementEdit.assignTo}>Assign to</span>
+
+          <span className={StylesAddModalElementEdit.dropdownContainer} onClick={() => setDropdownOpen(!dropdownOpen)}>
+  <span className={StylesAddModalElementEdit.dropdownLabel}>
+    {selectedAssign.email? selectedAssign.email : "Select users to assign task"}
+  </span>
+  <span className={StylesAddModalElementEdit.dropdownIcon}>
+    {dropdownOpen ? "▲" : "▼"}
+  </span>
+</span>
+
+{dropdownOpen && (
+  <ul className={StylesAddModalElementEdit.emailList}>
+
+    {selectedAssign.email&&<div className={StylesAddModalElementEdit.clear}><button onClick={handleClear}>Clear user assignment</button></div>}
+    {userData.length > 0 ? (
+      userData.map((user, index) => (
+        <li
+          key={index}
+          onClick={() => handleEmailSelection(user.id, user.email)}
+          className={`${StylesAddModalElementEdit.emailListItems} ${
+            selectedAssign?.email === user.email
+              ? StylesAddModalElementEdit.selectedAssignItem
+              : ""
+          }`}
+        >
+          <label>
+            <input
+              type="radio"
+              name="email"
+              value={user.email}
+              checked={selectedAssign?.email === user.email}
+              onChange={() => handleEmailSelection(user.id, user.email)}
+              style={{ display: "none" }}
+            />
+            <span className={StylesAddModalElementEdit.nameIcon}>
+              {handleName(user.name)}
+            </span>
+            <span className={StylesAddModalElementEdit.emailSpan}>
+              {user.email}
+            </span>
+          </label>
+        </li>
+      ))
+    ) : (
+      <p>No users available</p>
+    )}
+     
+  </ul>
+
+ 
+)}
+
+          </div>
+
+
+
+
         <div>
           <br />
           <span>

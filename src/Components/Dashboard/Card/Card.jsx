@@ -46,7 +46,7 @@ const Card = ({ priority, title, checklist, myTaskId, serverFetchedDate, collasp
 
             setChangeBoard(response.data.task.board);
             dispatch(toggleLoader());
-            console.log("tes1  data",response.data.task.board);
+            
         } catch (error) {
             console.error('Error updating board:', error);
             dispatch(toggleLoader());

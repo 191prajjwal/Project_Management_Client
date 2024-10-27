@@ -88,14 +88,131 @@
 }
 
 
+.dropdownContainer{
+    background-color: #d7e7fa53;
+    padding:5px 40px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+    &:hover{
+        background-color: #a4caf853;
+    }
+    
+}
+
+
+.dropdownLabel{
+   
+    font-weight: 500;
+    
+}
+
+.dropdownIcon{
+    margin-left: 60px;
+}
+
+.assignTo{
+    margin-right:45px;
+}
+
+
+.selectedEmail p{
+
+    background-color: #e4f4ff;
+    padding: 8px;
+    border-radius: 5px;
+    text-align: center;
+    
+
+}
+
+
+.selectedEmailItem{
+    background-color: #1985ff53;
+}
+
+.clear{
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.clear button{
+
+    font-family: 'Poppins';
+    font-size: 0.9rem;
+    padding:7px 10px;
+    border:none;
+    width:100%;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+    color:black;
+    background-color: #b6d9ff5c;
+    &:hover{
+        transform: scale(0.96);
+        background-color:#7bb8f953 ;
+    }
+
+}
+
+.emailList{
+    list-style-type: none;
+    position: relative;
+    left:-20px;
+    overflow: auto;
+    max-height: 120px;
+    border: 1px solid rgb(207, 206, 206);
+    position: relative;
+    left:1px;
+    padding:10px;
+    border-radius: 5px;
+    width:300px;
+    margin:10px auto;
+    position: absolute;
+    left:50%;
+    transform: translate(-50%);
+    z-index: 100;
+    background-color: white;
+  
+
+}
+
+.emailListItems{
+    margin-bottom:10px;
+    background-color: #e4eef953;
+    border-radius: 15px;
+    padding:10px;
+    font-size: 1rem;
+
+    &:hover{
+        background-color: #a4cfff53;
+    }
+}
+
+
+.emailSpan{
+    margin-left:10px;
+    
+}
+
+.nameIcon{
+
+    background: #FFEBEB;
+    padding:7px;
+    border-radius: 50%;
+    font-size: 14px;
+    position: relative;
+    margin-right:10px ;
+}
+
+
+
+
 
 .checklist {
     overflow-y: scroll;
     height: 223px;
 }
-
-
-
 
 .button1 {
     font-family: Poppins;
@@ -173,30 +290,11 @@
 
 
 
-/* css for the dropdown select */
-
-/* .selectInput{
-    border: 1px solid #e2e2e2;
-    border-radius: 4px;
-    padding: 10px 16px;
-    height: 44px;
-    background: #fff;
-    width: 87%;
-    font-size: 15px;
-    margin-left:5px;
-    color: #494949;
-}
 
 
-.selectInput option[value=""]
-{
-   color: #9B959F;
-}
 
-.selectInput option{
 
-color:rgb(17, 17, 17)
-} */
+
 
 
 
