@@ -74,6 +74,8 @@ const Board = () => {
       const fetchData = async () => {
         try {
           const tasks = await fetchTasksToDo(userId, selectedOption);
+
+          console.log(tasks)
           setTasksToDo(tasks);
         } catch (error) {
           console.error("Error fetching tasks:", error);
@@ -209,14 +211,15 @@ const Board = () => {
 
       if (response.status === 200) {
 
+        if(selectedAssign.email)
         toast.success(`${selectedAssign.email} added to dashboard`)
       } else {
         console.error("Error:", response.data.message);
-        toast.error(`Error assigning tasks`)
+        toast.error(`Error assigning dashboard to user`)
         
       }
     } catch (error) {
-      toast.error(`Error assigning tasks`)
+      toast.error(`Atleast one task needed to assign the dashboard to a user`)
     }
   };
 
@@ -312,6 +315,8 @@ const Board = () => {
                         myTaskId={taskBoard._id}
                         serverFetchedDate={taskBoard.dueDate}
                         collasped={collasped.backlog}
+                       
+          
                       />
                     </>
                   )

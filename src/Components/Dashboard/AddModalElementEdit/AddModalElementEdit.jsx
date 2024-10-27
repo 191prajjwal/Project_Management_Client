@@ -76,9 +76,8 @@ const AddModalElementEdit = ({ taskId }) => {
     const priority = selectedPriority;
     const dueDate = startDate instanceof Date
       ? new Date(startDate.getTime() - startDate.getTimezoneOffset() * 60000).toISOString()
-      : startDate; // use the existing value if it's not a Date object
+      : startDate; 
     
-    const userId = uId;
     const board = myBoard;
   
     const nonEmptyChecklist = checklists.filter(
@@ -108,7 +107,6 @@ const AddModalElementEdit = ({ taskId }) => {
       priority,
       checklist,
       dueDate,
-      userId,
       board,
       assignTo
     };

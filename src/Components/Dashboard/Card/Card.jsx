@@ -7,7 +7,7 @@ import { toggleBoardSwitch, toggleToastyAction, toggleLoader, openModal2, setTas
 import Modal from 'react-responsive-modal';
 import { toast } from 'react-toastify';
 
-const Card = ({ priority, title, checklist, myTaskId, serverFetchedDate, collasped }) => {
+const Card = ({ priority, title, checklist, myTaskId, serverFetchedDate, collasped}) => {
 
     const baseUrl = import.meta.env.VITE_BASE_URL
     const [isVisible, setIsVisible] = useState(false);
@@ -116,7 +116,6 @@ const Card = ({ priority, title, checklist, myTaskId, serverFetchedDate, collasp
             return;
         }
     
-        // Parse serverFetchedDate without timezone adjustments to prevent day decrement
         const dateParts = serverDate.split('T')[0].split('-');
         const serverDueDate = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
 
@@ -273,7 +272,9 @@ const closeModal = () => {
             {img(priority)}
             <div className={StylesCard.card}>
                 <div className={StylesCard.priorityText} style={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <div><img src={imgSrc} alt='high' />&nbsp;&nbsp;{priority}</div>
+                    <div><img src={imgSrc} alt='high' />&nbsp;&nbsp;{priority} 
+                       
+                    </div>
                     <div style={{ 
                         position: 'relative', display: 'inline-block' }}>
                         <span>
@@ -293,6 +294,8 @@ const closeModal = () => {
                     </div>
                 </div>
                 <br />
+
+        
                 <div className={StylesCard.cardTitle}>{title.length<45?title:title.slice(0,44)+"..."}
                 {title.length>=45 && <span className={StylesCard.tooltiptext}>{title}</span>} 
                 </div>

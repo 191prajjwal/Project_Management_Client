@@ -19,7 +19,6 @@ const AddModalElement = () => {
   const uId = localStorage.getItem("id");
   const myBoard = "toDo";
   const [checklists, setChecklists] = useState([]);
-  const [assignTo, setAssignTo] = useState("");
 
   const handleCloseModal = () => {
     dispatch(closeModal1());
@@ -29,14 +28,7 @@ const AddModalElement = () => {
     setSelectedPriority(priority);
   };
 
-  const handleTaskCheck = (taskId, completed) => {
-    console.log(
-      "Task checkbox clicked - Task ID:",
-      taskId,
-      "Completed:",
-      completed
-    );
-  };
+
 
   const handleTaskDelete = (taskId) => {
     console.log("Task delete button clicked - Task ID:", taskId);
@@ -86,8 +78,7 @@ const AddModalElement = () => {
       checklist,
       dueDate,
       userId,
-      board,
-      assignTo,
+      board
     };
 
     console.log(data);
@@ -99,7 +90,6 @@ const AddModalElement = () => {
         },
       })
       .then((response) => {
-        console.log("Task added successfully:", response.data);
         toast.success(response.data.message);
         handleCloseModal();
         window.location.reload();
@@ -199,7 +189,6 @@ const AddModalElement = () => {
           <ModalTaskList
             checklists={checklists}
             setChecklists={setChecklists}
-            onTaskCheck={handleTaskCheck}
             onTaskDelete={handleTaskDelete}
           />
         </div>
