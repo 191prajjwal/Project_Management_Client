@@ -58,7 +58,7 @@ const Board = () => {
         }
       );
 
-      console.log("task data list", response.data.tasksToDo);
+  
       return response.data.tasksToDo;
     } catch (error) {
       console.error("Error fetching tasks:", error);
@@ -75,7 +75,7 @@ const Board = () => {
         try {
           const tasks = await fetchTasksToDo(userId, selectedOption);
 
-          console.log(tasks)
+        
           setTasksToDo(tasks);
         } catch (error) {
           console.error("Error fetching tasks:", error);
@@ -150,7 +150,7 @@ const Board = () => {
           Authorization: `${token}`,
         },
       });
-      console.log(response);
+    
       setUserData(response.data.userData);
     } catch (error) {
       console.error("Error fetching user Data:", error);
@@ -219,9 +219,16 @@ const Board = () => {
         
       }
     } catch (error) {
-      toast.error(`Atleast one task needed to assign the dashboard to a user`)
+      toast.error(`Create atleast one task to assign the dashboard to a user`)
     }
   };
+
+
+  const handleHeadName=(name)=>{
+
+    return name.split(" ",1)
+
+  }
 
 
   return (
@@ -245,7 +252,7 @@ const Board = () => {
         <br />
         <div className={StylesBoard.header}>
           <div className={StylesBoard.headerTitle}>
-            Welcome! {myName[0].toUpperCase() + myName.slice(1)}
+            Welcome! <span className={StylesBoard.headName}>{ handleHeadName(myName)}</span>
           </div>
           <div className={StylesBoard.headerDate}>{formattedDate}</div>
         </div>
@@ -303,6 +310,8 @@ const Board = () => {
               </div>
 
               {tasksToDo.map((taskBoard, index) => {
+
+               
                 return (
                   taskBoard.board === "backlog" && (
                     <>
@@ -315,6 +324,7 @@ const Board = () => {
                         myTaskId={taskBoard._id}
                         serverFetchedDate={taskBoard.dueDate}
                         collasped={collasped.backlog}
+                        assignedUserName={taskBoard.assignedUserName}
                        
           
                       />
@@ -367,6 +377,7 @@ const Board = () => {
                         myTaskId={taskBoard._id}
                         serverFetchedDate={taskBoard.dueDate}
                         collasped={collasped.todo}
+                        assignedUserName={taskBoard.assignedUserName}
                       />
                     </>
                   )
@@ -410,6 +421,7 @@ const Board = () => {
                         myTaskId={taskBoard._id}
                         serverFetchedDate={taskBoard.dueDate}
                         collasped={collasped.inprogress}
+                        assignedUserName={taskBoard.assignedUserName}
                       />
                     </>
                   )
@@ -450,6 +462,7 @@ const Board = () => {
                         myTaskId={taskBoard._id}
                         serverFetchedDate={taskBoard.dueDate}
                         collasped={collasped.done}
+                        assignedUserName={taskBoard.assignedUserName}
                       />
                     </>
                   )
@@ -490,8 +503,6 @@ const Board = () => {
 
 
             <ul className={StylesBoard.emailList}>
-
-{selectedAssign.email&&<div className={StylesBoard.clear}><button onClick={handleClear}>Clear dashboard assignment</button></div>}
               {userData.length > 0 ? (
                 userData.map((user, index) => (
                   <li

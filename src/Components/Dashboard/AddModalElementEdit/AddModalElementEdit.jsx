@@ -38,7 +38,7 @@ const AddModalElementEdit = ({ taskId }) => {
         setChecklists(task.checklist);
         setTaskTitle(task.title);
         setAssignTo(task.assignTo)
-        console.log("task.checklist======", task.checklist);
+       
       })
       .catch((error) => {
         console.error("Error fetching task data:", error);
@@ -111,7 +111,7 @@ const AddModalElementEdit = ({ taskId }) => {
       assignTo
     };
 
-    console.log(data)
+   
   
     axios
       .put(`${baseUrl}/api/v1/tasks/update/${taskId}`, data, {
@@ -161,7 +161,7 @@ const AddModalElementEdit = ({ taskId }) => {
           Authorization: `${token}`,
         },
       });
-      console.log("userData",response);
+      
       setUserData(response.data.userData);
     } catch (error) {
       console.error("Error fetching user Data:", error);
@@ -193,15 +193,7 @@ const AddModalElementEdit = ({ taskId }) => {
   },[])
 
 
-  const handleClear=()=>{
-   
-    setAssignTo("");                
-  setSelectedAssign({});          
-  setDropdownOpen(false); 
-
-  }
-
-
+ 
 
   return (
     <>
@@ -280,7 +272,7 @@ const AddModalElementEdit = ({ taskId }) => {
 {dropdownOpen && (
   <ul className={StylesAddModalElementEdit.emailList}>
 
-    {selectedAssign.email&&<div className={StylesAddModalElementEdit.clear}><button onClick={handleClear}>Clear user assignment</button></div>}
+
     {userData.length > 0 ? (
       userData.map((user, index) => (
         <li
@@ -336,7 +328,7 @@ const AddModalElementEdit = ({ taskId }) => {
             {checkMarkMe}/{checklists.length})
             <span className={StylesAddModalElementEdit.asterisk}>*</span>
           </span>
-          {console.log("checklists]]]]]]]]]]", checklists)}
+        
         </div>
         <div className={StylesAddModalElementEdit.checklist}>
           <ModalTaskListEdit

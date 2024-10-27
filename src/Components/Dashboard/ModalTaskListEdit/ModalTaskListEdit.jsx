@@ -46,7 +46,7 @@ const ModalTaskListEdit = ({ checklists, setChecklists, onTaskCheck, onTaskDelet
     <>
       {checklists.map((checklist) => (
         <div key={checklist._id} className={StylesModalTaskListEdit.checklist}>
-        {  console.log("checklist._id=====",checklist._id)}
+      
           <input
             type="checkbox"
             checked={checklist.completed}

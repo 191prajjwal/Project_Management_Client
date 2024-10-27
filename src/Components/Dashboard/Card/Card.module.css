@@ -304,6 +304,30 @@ cursor:pointer
     text-emphasis: left;
     
   }
+
+  
+  
+  .assignedUser {
+    background-color: #FFEBEB;
+    color: #333;
+    font-size: 0.7rem;
+    width:2.3em;
+    height: 2.3em;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    vertical-align: middle; 
+    margin-left: 7px;
+}
+
+
+
+
+
+
+  
   
   .cardTitle:hover .tooltiptext {
     display: inline-block;

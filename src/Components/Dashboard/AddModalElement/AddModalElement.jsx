@@ -30,9 +30,7 @@ const AddModalElement = () => {
 
 
 
-  const handleTaskDelete = (taskId) => {
-    console.log("Task delete button clicked - Task ID:", taskId);
-  };
+ 
 
   const handleSave = () => {
     const title = document.getElementById("taskTitle").value;
@@ -81,7 +79,7 @@ const AddModalElement = () => {
       board
     };
 
-    console.log(data);
+  
     const token = localStorage.getItem("token");
     axios
       .post(`${baseUrl}/api/v1/tasks/create`, data, {
@@ -189,7 +187,7 @@ const AddModalElement = () => {
           <ModalTaskList
             checklists={checklists}
             setChecklists={setChecklists}
-            onTaskDelete={handleTaskDelete}
+           
           />
         </div>
         <br />

@@ -11,7 +11,7 @@ import { toggleLoader } from '../../../Redux/slice';
     const baseUrl= import.meta.env.VITE_BASE_URL
 
 
-    console.log(baseUrl)
+   
 
     const Register = ({ handleToggleForm }) => {
     const dispatch = useDispatch();
@@ -67,7 +67,6 @@ import { toggleLoader } from '../../../Redux/slice';
             dispatch(toggleLoader());
             try {
                 const response = await axios.post(`${baseUrl}/api/v1/users/register`, formData);
-                console.log(response.data);
                 toast.success(response.data.message);
                 dispatch(toggleLoader());
 

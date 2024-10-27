@@ -7,7 +7,7 @@ import { toggleBoardSwitch, toggleToastyAction, toggleLoader, openModal2, setTas
 import Modal from 'react-responsive-modal';
 import { toast } from 'react-toastify';
 
-const Card = ({ priority, title, checklist, myTaskId, serverFetchedDate, collasped}) => {
+const Card = ({ priority, title, checklist, myTaskId, serverFetchedDate, collasped,assignedUserName }) => {
 
     const baseUrl = import.meta.env.VITE_BASE_URL
     const [isVisible, setIsVisible] = useState(false);
@@ -116,6 +116,7 @@ const Card = ({ priority, title, checklist, myTaskId, serverFetchedDate, collasp
             return;
         }
     
+        // Parse serverFetchedDate without timezone adjustments to prevent day decrement
         const dateParts = serverDate.split('T')[0].split('-');
         const serverDueDate = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
 
@@ -264,6 +265,21 @@ const closeModal = () => {
 
 
 
+const handleName = (name) => {
+    const words = name.trim().split(" ");
+
+    if (words.length === 1) {
+      return (words[0].charAt(0) + (words[0].charAt(1) || "")).toUpperCase();
+    } else if (words.length > 1) {
+      return (words[0].charAt(0) + words[1].charAt(0)).toUpperCase();
+    }
+
+    return "";
+  };
+
+const userName= localStorage.getItem("name")
+
+
 
 
     return (
@@ -273,7 +289,19 @@ const closeModal = () => {
             <div className={StylesCard.card}>
                 <div className={StylesCard.priorityText} style={{ display: 'flex', justifyContent: 'space-between' }}>
                     <div><img src={imgSrc} alt='high' />&nbsp;&nbsp;{priority} 
-                       
+                    &nbsp;
+                    &nbsp;
+                        {
+                           ( assignedUserName!=userName && assignedUserName!=="")&&
+                            <span title={`This task is assigned to ${assignedUserName}`} className={StylesCard.assignedUser}>
+                             {
+                             
+                         
+                             handleName(assignedUserName)}
+                         </span>
+
+                             }
+                         
                     </div>
                     <div style={{ 
                         position: 'relative', display: 'inline-block' }}>

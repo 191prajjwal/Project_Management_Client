@@ -125,8 +125,8 @@ function formatDate(dateString) {
 
     return (
         <>
-        {console.log("theserverDate",theserverDate)}
-            {console.log(publicTaskData)}
+       
+        
             {(publicTaskData) ? (
                 <div className={StylePublic.public}>
                     <div className={StylePublic.logo}>
@@ -156,7 +156,7 @@ function formatDate(dateString) {
                                 publicTaskData.checklist.map((check) => (
                                     <PublicTaskList checked={check.completed} taskName={check.taskName} />
                                 ))}
-                            {console.log(publicTaskData.checklist)}
+                    
                         </div>
                         <br />
                         {(publicTaskData.dueDate !== null &&

@@ -25,8 +25,7 @@ const TaskList = ({ taskName, completed, taskListId, checkListId , myChecklistDi
           }
       });
 
-      console.log(response.data.message);
-      console.log("completed00000000000000000000",newChecked);
+  
       myChecklistDisplay(newChecked);
     } catch (error) {
       console.error('Error updating checklist item:', error);
