@@ -58,91 +58,188 @@ const SettingsForm = () => {
     setShowOldPassword((prevShowOldPassword) => !prevShowOldPassword);
   };
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   setFormSubmitted(true);
+  //   dispatch(toggleLoader());
+    
+    
+  //   const fieldsToUpdate = [formData.name, formData.email, formData.oldPassword, formData.newPassword].filter(Boolean).length;
+    
+  //   if (fieldsToUpdate === 0) {
+  //     toast.error('One field is required to update!');
+  //     dispatch(toggleLoader());
+  //     return;
+  //   }
+    
+  //   if (fieldsToUpdate > 1 && !(formData.oldPassword && formData.newPassword)) {
+  //     toast.error('Only one field can be updated at a time, or both passwords must be provided!');
+  //     dispatch(toggleLoader());
+  //     return;
+  //   }
+    
+ 
+  //   if ((formData.newPassword && !formData.oldPassword) || (!formData.newPassword && formData.oldPassword)) {
+  //     toast.error('Both old and new passwords are needed to update the password!');
+  //     dispatch(toggleLoader());
+  //     return;
+  //   }
+    
+  //   try {
+  //     const response = await axios.post(`${baseUrl}/api/v1/users/update/settings`, formData, {
+  //       headers: {
+  //         'Authorization': `${localStorage.getItem('token')}`,
+  //       }
+  //     });
+      
+  //     const { updatedDocument } = response.data;
+  
+  //     if (response.status === 200) {
+
+  //       if (formData.name) {
+  //         toast.success('Name updated successfully!');
+  //       }
+  //       if (formData.email) {
+  //         toast.success('Email updated successfully!');
+
+  //         toast.error('logging out.....');
+
+        
+  //         setTimeout(()=>{
+
+  //             localStorage.removeItem('token');
+  //             localStorage.removeItem('id');
+  //             localStorage.removeItem('name');
+  //             localStorage.removeItem('das');
+  //             localStorage.removeItem('email');
+  //             window.location.href = '/'; 
+
+  //         },1500)
+
+
+  //       }
+  //       if (formData.oldPassword && formData.newPassword ) {
+          
+
+  //           toast.success('Password updated successfully!');
+
+
+  //           toast.error('logging out.....');
+
+        
+  //               setTimeout(()=>{
+
+  //                   localStorage.removeItem('token');
+  //                   localStorage.removeItem('id');
+  //                   localStorage.removeItem('name');
+  //                   localStorage.removeItem('das');
+  //                   localStorage.removeItem('email');
+  //                   window.location.href = '/'; 
+
+  //               },1500)
+
+  //       } 
+        
+  //       localStorage.setItem('name', updatedDocument.name);
+  //       localStorage.setItem('email', updatedDocument.email);
+        
+  //       setFormData({
+  //         _id: localStorage.getItem('id'),
+  //         name: '',
+  //         email: '',
+  //         oldPassword: '',
+  //         newPassword: ''
+  //       });
+  //     }
+  //   } catch (error) {
+  //     const errorMessage = error.response?.data?.error || 'Update failed!'; // Use backend error message if available
+  //     toast.error(errorMessage);
+  //   } finally {
+  //     dispatch(toggleLoader());
+  //   }
+  // };
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     setFormSubmitted(true);
     dispatch(toggleLoader());
-    
-    // Validation
-    const fieldsToUpdate = [formData.name, formData.email, formData.oldPassword, formData.newPassword].filter(Boolean).length;
-    
+  
+    // Treat name and email as empty if unchanged from localStorage values
+    const unchangedName = formData.name === localStorage.getItem('name') ? '' : formData.name;
+    const unchangedEmail = formData.email === localStorage.getItem('email') ? '' : formData.email;
+  
+    const fieldsToUpdate = [
+      unchangedName,
+      unchangedEmail,
+      formData.oldPassword,
+      formData.newPassword
+    ].filter(Boolean).length;
+  
     if (fieldsToUpdate === 0) {
       toast.error('One field is required to update!');
       dispatch(toggleLoader());
       return;
     }
-    
+  
     if (fieldsToUpdate > 1 && !(formData.oldPassword && formData.newPassword)) {
       toast.error('Only one field can be updated at a time, or both passwords must be provided!');
       dispatch(toggleLoader());
       return;
     }
-    
-    // Check for password update requirements
+  
     if ((formData.newPassword && !formData.oldPassword) || (!formData.newPassword && formData.oldPassword)) {
       toast.error('Both old and new passwords are needed to update the password!');
       dispatch(toggleLoader());
       return;
     }
-    
+  
     try {
-      const response = await axios.post(`${baseUrl}/api/v1/users/update/settings`, formData, {
+      const response = await axios.post(`${baseUrl}/api/v1/users/update/settings`, {
+        _id: formData._id,
+        name: unchangedName,
+        email: unchangedEmail,
+        oldPassword: formData.oldPassword,
+        newPassword: formData.newPassword
+      }, {
         headers: {
           'Authorization': `${localStorage.getItem('token')}`,
         }
       });
-      
+  
       const { updatedDocument } = response.data;
   
       if (response.status === 200) {
-        // Check which fields were updated and show corresponding toast messages
-        if (formData.name) {
+        if (unchangedName) {
           toast.success('Name updated successfully!');
+          localStorage.setItem('name', updatedDocument.name);
         }
-        if (formData.email) {
+        if (unchangedEmail) {
           toast.success('Email updated successfully!');
-
-          toast.error('logging out.....');
-
-        
-          setTimeout(()=>{
-
-              localStorage.removeItem('token');
-              localStorage.removeItem('id');
-              localStorage.removeItem('name');
-              localStorage.removeItem('das');
-              localStorage.removeItem('email');
-              window.location.href = '/'; 
-
-          },1500)
-
-
-        }
-        if (formData.oldPassword && formData.newPassword ) {
+          toast.error('Logging out...');
           
-
-            toast.success('Password updated successfully!');
-
-
-            toast.error('logging out.....');
-
-        
-                setTimeout(()=>{
-
-                    localStorage.removeItem('token');
-                    localStorage.removeItem('id');
-                    localStorage.removeItem('name');
-                    localStorage.removeItem('das');
-                    localStorage.removeItem('email');
-                    window.location.href = '/'; 
-
-                },1500)
-
-        } 
-        
-        localStorage.setItem('name', updatedDocument.name);
-        localStorage.setItem('email', updatedDocument.email);
-        
+          setTimeout(() => {
+            localStorage.removeItem('token');
+            localStorage.removeItem('id');
+            localStorage.removeItem('name');
+            localStorage.removeItem('das');
+            localStorage.removeItem('email');
+            window.location.href = '/';
+          }, 1500);
+        }
+        if (formData.oldPassword && formData.newPassword) {
+          toast.success('Password updated successfully!');
+          toast.error('Logging out...');
+          
+          setTimeout(() => {
+            localStorage.removeItem('token');
+            localStorage.removeItem('id');
+            localStorage.removeItem('name');
+            localStorage.removeItem('das');
+            localStorage.removeItem('email');
+            window.location.href = '/';
+          }, 1500);
+        }
+  
         setFormData({
           _id: localStorage.getItem('id'),
           name: '',
@@ -152,12 +249,14 @@ const SettingsForm = () => {
         });
       }
     } catch (error) {
-      const errorMessage = error.response?.data?.error || 'Update failed!'; // Use backend error message if available
+      const errorMessage = error.response?.data?.error || 'Update failed!';
       toast.error(errorMessage);
     } finally {
       dispatch(toggleLoader());
     }
   };
+  
+
   
 
   return (
