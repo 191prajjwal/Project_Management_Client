@@ -494,7 +494,7 @@ const Board = () => {
             <span className={StylesBoard.dropdownLabel}>
               {selectedAssign.email
                 ? selectedAssign.email
-                : "Select users to assign task"}
+                : "Select user to assign the dashboard"}
             </span>
             <span className={StylesBoard.dropdownIcon}>
               {dropdownOpen ? "▲" : "▼"}

@@ -44,7 +44,7 @@ const SettingsForm = () => {
       } else if (name === 'email') {
         errorMessage = !/\S+@\S+\.\S+/.test(value) ? 'Invalid email address' : '';
       } else if (name === 'newPassword') {
-        errorMessage = value.length < 8 ? 'Password must be at least 8 characters long' : '';
+        errorMessage = value.length < 8 ? 'Passwords must be at least 8 characters long' : '';
       } else if (name === 'oldPassword') {
         errorMessage = value.trim() === '' ? 'Old password is required' : '';
       }
@@ -61,105 +61,118 @@ const SettingsForm = () => {
     setShowOldPassword((prevShowOldPassword) => !prevShowOldPassword);
   };
 
-  
-  
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setFormSubmitted(true);
-    dispatch(toggleLoader());
-  
 
-    const unchangedName = formData.name === localStorage.getItem('name') ? '' : formData.name;
-    const unchangedEmail = formData.email === localStorage.getItem('email') ? '' : formData.email;
-  
-    const fieldsToUpdate = [
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  setFormSubmitted(true);
+  dispatch(toggleLoader());
+
+  const unchangedName = formData.name === localStorage.getItem('name') ? '' : formData.name;
+  const unchangedEmail = formData.email === localStorage.getItem('email') ? '' : formData.email;
+
+  const fieldsToUpdate = [
       unchangedName,
       unchangedEmail,
       formData.oldPassword,
       formData.newPassword
-    ].filter(Boolean).length;
-  
-    if (fieldsToUpdate === 0) {
+  ].filter(Boolean).length;
+
+  if (fieldsToUpdate === 0) {
       toast.error('One field is required to update!');
       dispatch(toggleLoader());
       return;
-    }
-  
-    if (fieldsToUpdate > 1 && !(formData.oldPassword && formData.newPassword)) {
+  }
+
+  if (fieldsToUpdate > 1 && !(formData.oldPassword && formData.newPassword)) {
       toast.error('Only one field can be updated at a time, or both passwords must be provided!');
       dispatch(toggleLoader());
       return;
-    }
-  
-    if ((formData.newPassword && !formData.oldPassword) || (!formData.newPassword && formData.oldPassword)) {
+  }
+
+  if ((formData.newPassword && !formData.oldPassword) || (!formData.newPassword && formData.oldPassword)) {
       toast.error('Both old and new passwords are needed to update the password!');
       dispatch(toggleLoader());
       return;
-    }
-  
-    try {
+  }
+
+  // New check for old password length
+  if (formData.oldPassword && formData.oldPassword.length < 8) {
+      toast.error('Passwords must be at least 8 characters long!');
+      dispatch(toggleLoader());
+      return;
+  }
+
+  // Check to ensure old and new passwords are not the same
+  if (formData.newPassword && formData.oldPassword && formData.newPassword === formData.oldPassword) {
+      toast.error('New password cannot be the same as the old password!');
+      dispatch(toggleLoader());
+      return;
+  }
+
+  try {
       const response = await axios.post(`${baseUrl}/api/v1/users/update/settings`, {
-        _id: formData._id,
-        name: unchangedName,
-        email: unchangedEmail,
-        oldPassword: formData.oldPassword,
-        newPassword: formData.newPassword
+          _id: formData._id,
+          name: unchangedName,
+          email: unchangedEmail,
+          oldPassword: formData.oldPassword,
+          newPassword: formData.newPassword
       }, {
-        headers: {
-          'Authorization': `${localStorage.getItem('token')}`,
-        }
+          headers: {
+              'Authorization': `${localStorage.getItem('token')}`,
+          }
       });
-  
+
       const { updatedDocument } = response.data;
-  
+
       if (response.status === 200) {
-        if (unchangedName) {
-          toast.success('Name updated successfully!');
-          localStorage.setItem('name', updatedDocument.name);
-        }
-        if (unchangedEmail) {
-          toast.success('Email updated successfully!');
-          toast.error('Logging out...');
-          
-          setTimeout(() => {
-            localStorage.removeItem('token');
-            localStorage.removeItem('id');
-            localStorage.removeItem('name');
-            localStorage.removeItem('das');
-            localStorage.removeItem('email');
-            window.location.href = '/';
-          }, 1500);
-        }
-        if (formData.oldPassword && formData.newPassword) {
-          toast.success('Password updated successfully!');
-          toast.error('Logging out...');
-          
-          setTimeout(() => {
-            localStorage.removeItem('token');
-            localStorage.removeItem('id');
-            localStorage.removeItem('name');
-            localStorage.removeItem('das');
-            localStorage.removeItem('email');
-            window.location.href = '/';
-          }, 1500);
-        }
-  
-        setFormData({
-          _id: localStorage.getItem('id'),
-          name: '',
-          email: '',
-          oldPassword: '',
-          newPassword: ''
-        });
+          if (unchangedName) {
+              toast.success('Name updated successfully!');
+              localStorage.setItem('name', updatedDocument.name);
+          }
+          if (unchangedEmail) {
+              toast.success('Email updated successfully!');
+              toast.error('Logging out...');
+
+              setTimeout(() => {
+                  localStorage.removeItem('token');
+                  localStorage.removeItem('id');
+                  localStorage.removeItem('name');
+                  localStorage.removeItem('das');
+                  localStorage.removeItem('email');
+                  window.location.href = '/';
+              }, 1500);
+          }
+          if (formData.oldPassword && formData.newPassword) {
+              toast.success('Password updated successfully!');
+              toast.error('Logging out...');
+
+              setTimeout(() => {
+                  localStorage.removeItem('token');
+                  localStorage.removeItem('id');
+                  localStorage.removeItem('name');
+                  localStorage.removeItem('das');
+                  localStorage.removeItem('email');
+                  window.location.href = '/';
+              }, 1500);
+          }
+
+          setFormData({
+              _id: localStorage.getItem('id'),
+              name: '',
+              email: '',
+              oldPassword: '',
+              newPassword: ''
+          });
       }
-    } catch (error) {
+  } catch (error) {
       const errorMessage = error.response?.data?.error || 'Update failed!';
       toast.error(errorMessage);
-    } finally {
+  } finally {
       dispatch(toggleLoader());
-    }
-  };
-  
+  }
+};
+
 
   
 
