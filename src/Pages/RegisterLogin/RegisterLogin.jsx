@@ -4,8 +4,7 @@ import LeftSideBar from '../../Components/RegisterLogin/LeftSideBar/LeftSideBar'
 import Register from '../../Components/RegisterLogin/Register/Register';
 import Login from '../../Components/RegisterLogin/Login/Login';
 import axios from 'axios'
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 import loading from '../../../public/Assets/loading.gif';
 
 
@@ -31,7 +30,7 @@ const RegisterLogin = () => {
 
         if(response.status===200)
        { 
-        toast.success(response.data.message)
+        toast.success("Server is live")
         setIsLoading(false)
        }
 

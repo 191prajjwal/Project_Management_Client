@@ -189,11 +189,6 @@ const Board = () => {
   };
 
 
-  const handleClear = () => {
-    setAssignTo("");                 
-    setSelectedAssign({});          
-    setDropdownOpen(false);         
-};
 
   const handleAssign = async () => {
     try {
