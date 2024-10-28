@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import StyleSettingsForm from './SettingsForm.module.css';
 import passEye from '../../../Assets/passEye.svg';
+
+import passEyeClose from '../../../Assets/passEyeClose.svg';
+
 import { useDispatch } from 'react-redux';
 import { toggleLoader } from '../../../Redux/slice';
 import { ToastContainer, toast } from 'react-toastify';
@@ -198,7 +201,7 @@ const SettingsForm = () => {
           />
           <img
             title={showOldPassword ? 'Hide Password' : 'Show Password'}
-            src={passEye}
+            src={!showOldPassword?passEye:passEyeClose}
             alt={showOldPassword ? 'Hide Password' : 'Show Password'}
             className={StyleSettingsForm.passwordIcon}
             onClick={handleToggleOldPassword}
@@ -219,7 +222,7 @@ const SettingsForm = () => {
           <img
 
           title={showPassword ? 'Hide Password' : 'Show Password'}
-            src={passEye}
+            src={!showPassword?passEye:passEyeClose}
             alt={showPassword ? 'Hide Password' : 'Show Password'}
             className={StyleSettingsForm.passwordIcon}
             onClick={handleTogglePassword}

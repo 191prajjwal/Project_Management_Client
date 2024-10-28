@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import StylesLogin from './Login.module.css'; 
 import passEye from '../../../Assets/passEye.svg';
+import passEyeClose from '../../../Assets/passEyeClose.svg';
+
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -110,7 +112,7 @@ const Login = () => {
                         onChange={handleChange}
                     />
                     <img title={!showPassword ?"show password":"hide password"}
-                        src={showPassword ? passEye : passEye}
+                        src={!showPassword ? passEye : passEyeClose}
                         alt={showPassword ? 'Hide Password' : 'Show Password'}
                         className={StylesLogin.passwordIcon}
                         onClick={handleTogglePassword}

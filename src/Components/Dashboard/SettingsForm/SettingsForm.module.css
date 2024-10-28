@@ -129,6 +129,6 @@
     cursor: pointer;
     transition :transform 0.3s;
     &:hover{
-        transform: rotate(180deg);
+        transform: scale(0.95)
     }
 }

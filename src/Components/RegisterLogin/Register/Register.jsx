@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import StylesRegister from './Register.module.css';
 import passEye from '../../../Assets/passEye.svg';
+import passEyeClose from '../../../Assets/passEyeClose.svg';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -158,7 +159,7 @@ import { toggleLoader } from '../../../Redux/slice';
                             onChange={handleChange}
                         />
                         <img title={!showPassword?"show password":"hide password"}
-                            src={showPassword ? passEye : passEye}
+                            src={!showPassword ? passEye : passEyeClose}
                             alt={showPassword ? 'Hide Password' : 'Show Password'}
                             className={StylesRegister.passwordIcon}
                             onClick={handleTogglePassword}
@@ -178,7 +179,7 @@ import { toggleLoader } from '../../../Redux/slice';
                             onChange={handleChange}
                         />
                         <img title={!showConfirmPassword?"show password":"hide password"}
-                            src={showConfirmPassword ? passEye : passEye}
+                            src={!showConfirmPassword ? passEye : passEyeClose}
                             alt={showConfirmPassword ? 'Hide Confirm Password' : 'Show Confirm Password'}
                             className={StylesRegister.passwordIcon}
                             onClick={handleToggleConfirmPassword}
