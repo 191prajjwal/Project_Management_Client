@@ -191,7 +191,11 @@ const Board = () => {
 
 
   const handleAssign = async () => {
+   if(assignTo)
+   {
     try {
+
+     
       const userId = localStorage.getItem("id");
       const token = localStorage.getItem("token");
       const response = await axios.post(
@@ -219,6 +223,11 @@ const Board = () => {
     } catch (error) {
       toast.error(`Create atleast one task of your own to assign the dashboard to a user`)
     }
+   }
+
+   else{
+    toast.error('No user is selected to assign the dashboard to')
+   }
   };
 
 
