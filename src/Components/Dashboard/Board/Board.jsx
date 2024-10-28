@@ -213,13 +213,16 @@ const Board = () => {
 
         if(selectedAssign.email)
         toast.success(`${selectedAssign.email} added to dashboard`)
+      setTimeout(()=>{
+        window.location.reload()
+      },1500)
       } else {
         console.error("Error:", response.data.message);
         toast.error(`Error assigning dashboard to user`)
         
       }
     } catch (error) {
-      toast.error(`Create atleast one task to assign the dashboard to a user`)
+      toast.error(`Create atleast one task of your own to assign the dashboard to a user`)
     }
   };
 

@@ -41,6 +41,7 @@
 .dropdown select {
 
     width: 107px;
+    cursor: pointer;
     
 }
 
