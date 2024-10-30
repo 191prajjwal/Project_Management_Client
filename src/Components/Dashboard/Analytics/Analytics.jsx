@@ -43,13 +43,9 @@ const Analytics = () => {
     fetchData();
   }, []);
 
-
-
-  const padZero=(task)=>{
-
-    return `${task}`.padStart(2,"0")
-
-  }
+  const padZero = (task) => {
+    return `${task}`.padStart(2, "0");
+  };
 
   return (
     <>
@@ -65,11 +61,13 @@ const Analytics = () => {
             <div>
               <div style={{ display: "flex", gap: "11px" }}>
                 <img src="Assets/analyticsCircle.svg" alt="analyticsCircle" />
-                <span style={{ display: "flex", 
-                flex:"1",
-                justifyContent:"space-between"
-                    
-                 }}>
+                <span
+                  style={{
+                    display: "flex",
+                    flex: "1",
+                    justifyContent: "space-between",
+                  }}
+                >
                   <span className={StylesAnalytics.anTitle}>Backlog Tasks</span>{" "}
                   <span className={StylesAnalytics.anNo}>
                     {padZero(analyticsData.backlogTasks)}
@@ -79,9 +77,13 @@ const Analytics = () => {
               <br />
               <div style={{ display: "flex", gap: "11px" }}>
                 <img src="Assets/analyticsCircle.svg" alt="analyticsCircle" />
-                <span style={{ display: "flex", 
-                flex:"1",
-                justifyContent:"space-between" }}>
+                <span
+                  style={{
+                    display: "flex",
+                    flex: "1",
+                    justifyContent: "space-between",
+                  }}
+                >
                   <span className={StylesAnalytics.anTitle}>To-do Tasks</span>{" "}
                   <span className={StylesAnalytics.anNo}>
                     {padZero(analyticsData.todoTasks)}
@@ -91,9 +93,13 @@ const Analytics = () => {
               <br />
               <div style={{ display: "flex", gap: "11px" }}>
                 <img src="Assets/analyticsCircle.svg" alt="analyticsCircle" />
-                <span style={{ display: "flex", 
-                flex:"1",
-                justifyContent:"space-between" }}>
+                <span
+                  style={{
+                    display: "flex",
+                    flex: "1",
+                    justifyContent: "space-between",
+                  }}
+                >
                   <span className={StylesAnalytics.anTitle}>
                     In-Progress Tasks
                   </span>{" "}
@@ -120,9 +126,13 @@ const Analytics = () => {
             <div>
               <div style={{ display: "flex", gap: "11px" }}>
                 <img src="Assets/analyticsCircle.svg" alt="analyticsCircle" />
-                <span style={{ display: "flex", 
-                flex:"1",
-                justifyContent:"space-between"  }}>
+                <span
+                  style={{
+                    display: "flex",
+                    flex: "1",
+                    justifyContent: "space-between",
+                  }}
+                >
                   <span className={StylesAnalytics.anTitle}>Low Priority</span>{" "}
                   <span className={StylesAnalytics.anNo}>
                     {padZero(analyticsData.lowPriorityTasks)}
@@ -132,9 +142,13 @@ const Analytics = () => {
               <br />
               <div style={{ display: "flex", gap: "11px" }}>
                 <img src="Assets/analyticsCircle.svg" alt="analyticsCircle" />
-                <span style={{ display: "flex", 
-                flex:"1",
-                justifyContent:"space-between" }}>
+                <span
+                  style={{
+                    display: "flex",
+                    flex: "1",
+                    justifyContent: "space-between",
+                  }}
+                >
                   <span className={StylesAnalytics.anTitle}>
                     Moderate Priority
                   </span>{" "}
@@ -146,9 +160,13 @@ const Analytics = () => {
               <br />
               <div style={{ display: "flex", gap: "11px" }}>
                 <img src="Assets/analyticsCircle.svg" alt="analyticsCircle" />
-                <span style={{ display: "flex", 
-                flex:"1",
-                justifyContent:"space-between" }}>
+                <span
+                  style={{
+                    display: "flex",
+                    flex: "1",
+                    justifyContent: "space-between",
+                  }}
+                >
                   <span className={StylesAnalytics.anTitle}>High Priority</span>{" "}
                   <span className={StylesAnalytics.anNo}>
                     {padZero(analyticsData.highPriorityTasks)}
