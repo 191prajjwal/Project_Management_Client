@@ -14,7 +14,6 @@ import AddModalElementEdit from "../AddModalElementEdit/AddModalElementEdit";
 const Board = () => {
   const baseUrl = import.meta.env.VITE_BASE_URL;
 
-  const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState("thisWeek");
   const [collasped, setCollasped] = useState({
     backlog: false,
@@ -23,9 +22,7 @@ const Board = () => {
     done: false,
   });
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
+ 
 
   const isOpenModal = useSelector((state) => state.modal.isOpen);
 
@@ -44,7 +41,7 @@ const Board = () => {
   const onOpenModal = () => dispatch(openModal1());
   const onCloseModal = () => dispatch(closeModal1());
 
-  //modal end
+
 
   const fetchTasksToDo = async (userId, boardDate) => {
     try {
@@ -580,9 +577,7 @@ const Board = () => {
       >
         {<AddModalElement />}
       </Modal>
-      {/* modal end+++++++++++++++++++++++++++++++++++ */}
-
-      {/* ?modal start++++++++++++++++++++++++++++++++ */}
+     
 
       <Modal
         open={openEditModal}
@@ -595,7 +590,7 @@ const Board = () => {
       >
         {<AddModalElementEdit taskId={taskId} />}
       </Modal>
-      {/* modal end+++++++++++++++++++++++++++++++++++ */}
+     
 
       <ToastContainer
         position="top-right"
