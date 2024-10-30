@@ -203,7 +203,6 @@ const Card = ({
       return;
     }
 
-    // Parse serverFetchedDate without timezone adjustments to prevent day decrement
     const dateParts = serverDate.split("T")[0].split("-");
     const serverDueDate = new Date(
       dateParts[0],
