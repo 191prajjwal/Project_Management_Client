@@ -96,14 +96,12 @@ const handleSubmit = async (e) => {
       return;
   }
 
-  // New check for old password length
   if (formData.oldPassword && formData.oldPassword.length < 8) {
       toast.error('Passwords must be at least 8 characters long!');
       dispatch(toggleLoader());
       return;
   }
 
-  // Check to ensure old and new passwords are not the same
   if (formData.newPassword && formData.oldPassword && formData.newPassword === formData.oldPassword) {
       toast.error('New password cannot be the same as the old password!');
       dispatch(toggleLoader());

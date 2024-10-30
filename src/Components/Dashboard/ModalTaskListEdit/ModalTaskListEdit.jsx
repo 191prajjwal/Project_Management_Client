@@ -31,14 +31,12 @@ const ModalTaskListEdit = ({ checklists, setChecklists, onTaskCheck, onTaskDelet
       return checklist;
     });
     setChecklists(updatedChecklists);
-    // Pass the updated data to the parent component
     onTaskCheck(id, updatedChecklists.find(checklist => checklist._id === id).completed);
   };
 
   const handleDeleteClick = (id) => {
     const filteredChecklists = checklists.filter((checklist) => checklist._id !== id);
     setChecklists(filteredChecklists);
-    // Pass the updated data to the parent component
     onTaskDelete(id);
   };
 

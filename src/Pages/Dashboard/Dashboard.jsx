@@ -64,13 +64,13 @@ const Dashboard = () => {
                         <img src='Assets/Logout.svg' alt='Logout' style={{ width: '15%' }} /><span style={{ color: '#cf3636' }}>Logout</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     </div>
                 </div>
-                {/* Sidebar End */}
+                
                 <div>
                     {toggleMenu()}
                 </div>
             </div>
 
-            {/* Modal Start */}
+           
             <Modal open={open} onClose={onCloseModal} center showCloseIcon={false} classNames={{ modal: `${StylesDashboard.customModal}` }}>
                 <div>
                     <div className={StylesDashboard.logoutText}>Are you sure you want to Logout?</div>
@@ -80,7 +80,7 @@ const Dashboard = () => {
                     <div className={StylesDashboard.cancel} onClick={onCloseModal}>Cancel</div>
                 </div>
             </Modal>
-            {/* Modal End */}
+          
         </>
     );
 };
