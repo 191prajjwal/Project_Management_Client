@@ -1,13 +1,17 @@
-import React from 'react';
-import StylesModalTaskList from './ModalTaskList.module.css';
+import React from "react";
+import StylesModalTaskList from "./ModalTaskList.module.css";
 
-const ModalTaskList = ({ checklists, setChecklists, onTaskCheck, onTaskDelete }) => {
-
+const ModalTaskList = ({
+  checklists,
+  setChecklists,
+  onTaskCheck,
+  onTaskDelete,
+}) => {
   const handleAddNewClick = () => {
     const newChecklistId = `checklist-${checklists.length}`;
     const newChecklist = {
       id: newChecklistId,
-      inputValue: '',
+      inputValue: "",
       isChecked: false,
     };
     setChecklists([...checklists, newChecklist]);
@@ -31,20 +35,24 @@ const ModalTaskList = ({ checklists, setChecklists, onTaskCheck, onTaskDelete })
       return checklist;
     });
     setChecklists(updatedChecklists);
-    // Pass the updated data to the parent component
-    onTaskCheck(id, updatedChecklists.find(checklist => checklist.id === id).isChecked);
+
+    onTaskCheck(
+      id,
+      updatedChecklists.find((checklist) => checklist.id === id).isChecked
+    );
   };
 
   const handleDeleteClick = (id) => {
-    const filteredChecklists = checklists.filter((checklist) => checklist.id !== id);
+    const filteredChecklists = checklists.filter(
+      (checklist) => checklist.id !== id
+    );
     setChecklists(filteredChecklists);
-    // Pass the updated data to the parent component
+
     onTaskDelete(id);
   };
 
-  // Function to collect task data as string arrays
   const collectTaskData = () => {
-    return checklists.map(checklist => checklist.inputValue);
+    return checklists.map((checklist) => checklist.inputValue);
   };
 
   return (
@@ -64,14 +72,21 @@ const ModalTaskList = ({ checklists, setChecklists, onTaskCheck, onTaskDelete })
             onChange={(e) => handleInputChange(e, checklist.id)}
             className={StylesModalTaskList.inputTask}
           />
-          <button className={StylesModalTaskList.deleteButton} onClick={() => handleDeleteClick(checklist.id)}>
+          <button
+            className={StylesModalTaskList.deleteButton}
+            onClick={() => handleDeleteClick(checklist.id)}
+          >
             <img src="Assets/delete.svg" alt="delete" />
           </button>
         </div>
       ))}
-      <br/>
-      <div className={StylesModalTaskList.addButton} onClick={handleAddNewClick}>
-        <img src='Assets/AddButton.svg' alt='AddButton' />&nbsp;&nbsp;Add New
+      <br />
+      <div
+        className={StylesModalTaskList.addButton}
+        onClick={handleAddNewClick}
+      >
+        <img src="Assets/AddButton.svg" alt="AddButton" />
+        &nbsp;&nbsp;Add New
       </div>
     </>
   );
